@@ -1,0 +1,24 @@
+.aligncenter {
+    text-align: center;
+}
+
+button{
+    color: white;
+    background-color: blue;
+    border-radius: 30px;
+}
+
+body{
+    background-color: silver;
+    font-family: sans-serif; 
+}
+
+footer{
+    width: 100%;
+    background-color: black;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    color:white;
+    text-align: center;
+}
