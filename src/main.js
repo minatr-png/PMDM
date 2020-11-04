@@ -1,36 +1,128 @@
 var step = 1;
 
+/*
+M
+A
+X
+L
+E
+N
+G
+T
+H
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
+    const cont = document.getElementById('continue');
+    const back = document.getElementById('back');
+    const fini = document.getElementById('finish');
+    const urlI = document.getElementById('url');
+    //const st2T = document.getElementsByClassName('step2Text');
+    
     stepManager();
+    //document.getElementById('postal').maxLength = '4';
+
+    cont.addEventListener('click', () =>
+    {
+        if (step != 2)
+        {
+            step ++;
+            stepManager();
+        }
+        else step2ContinueAbled(cont);
+    });
+    back.addEventListener('click', () =>
+    {
+        step --;
+        stepManager();
+    });
+    fini.addEventListener('click', () => 
+    {
+        location.replace(document.getElementById("url").value);
+    });
+    urlI.addEventListener('input', () =>
+    {
+        step1ContinueAbled();
+    });
 });
-
-const continueEvent = () => {
-    step ++;
-    stepManager();
-}
-
-const backEvent = () => {
-    step --;
-    stepManager();
-}
 
 const step1ContinueAbled = () => {
     if (document.getElementById("url").value != "") document.getElementById("continue").disabled = false;
     else document.getElementById("continue").disabled = true;
 }
 
-const step2ContinueAbled = () => {
-    var name      = document.getElementById("name").value      != "";
-    var birthDate = document.getElementById("birthDate").value != "";
-    var postal    = document.getElementById("postal").value    != "";
-    var town      = document.getElementById("town").value      != "";
+const step2ContinueAbled = (cont) => {
+    var errors   = document.getElementById("errors");
+    var erName   = document.getElementById("erName");
+    var erBirth  = document.getElementById("erBirth");
+    var erTown   = document.getElementById("erTown");
+    var erPostal = document.getElementById("erPostal");
 
-    if (name && birthDate && postal && town) document.getElementById("continue").disabled = false;
-    else document.getElementById("continue").disabled = true;
+    var nameTF = document.getElementById("name").value      == "";
+    var birtTF = document.getElementById("birthDate").value == "";
+    var townTF = document.getElementById("town").value      == "";
+    var postTF = document.getElementById("postal").value;
+
+    if (nameTF || birtTF || postTF === "" || postTF.length > 4 || townTF)
+    {
+        var errorsText = "";
+
+        if (nameTF) 
+        {
+            erName.style.display  = "";
+            errorsText += erName.textContent;
+        }
+        else erName.style.display = "none";
+        if (birtTF) 
+        {
+            erBirth.style.display = "";
+            errorsText += erBirth.textContent + "\n";
+        }
+        else erBirth.style.display = "none";
+        if (townTF) 
+        {
+            erTown.style.display  = "";
+            errorsText += erTown.textContent + "\n";
+        }
+        else erTown.style.display = "none";
+        if (postTF === "" || postTF.length > 4) 
+        {
+            erPostal.style.display   = "";
+            errorsText += erPostal.textContent + "\n";
+        }
+        else erPostal.style.display = "none";
+
+        var newDiv = document.createElement("div"); 
+        var newContent = document.createTextNode("Hola!¿Qué tal?"); 
+        newDiv.appendChild(newContent); //añade texto al div creado. 
+
+        // añade el elemento creado y su contenido al DOM 
+        var currentDiv = errors; 
+        document.body.insertBefore(newDiv, currentDiv); 
+        /*errors.textContent = errorsText;
+        errors.style.display = "";*/
+    }
+    else
+    {
+        step ++;
+        stepManager();
+    }
 }
 
-const finish = () => {
-    location.replace(document.getElementById("url").value);
+const dataObj = () => {
+    const nameV = document.getElementById('name');
+    const birtV = document.getElementById('birthdate');
+    const direV = document.getElementById('direction');
+    const postV = document.getElementById('postal');
+    const provV = document.getElementById('province');
+    const townV = document.getElementById('town');
+
+    var user = {name:nameV, birth:birtV, direction:direV, postal:postV, province:provV, town:townV};
+
+    /*var ul = document.getElementById("list");
+    ul.appendChild(document.createElement("li").value = "hkasdjhkasdjhkasdjhkjhkasjhkasdjhk");
+
+    console.log(ul);*/
 }
 
 const stepManager = () => {
@@ -48,14 +140,17 @@ const stepManager = () => {
     }
     if (step == 2)
     {
-        document.getElementById("step1").style.display = "none";
-        document.getElementById("step3").style.display = "none";
-        document.getElementById("step4").style.display = "none";
+        document.getElementById("step1").style.display      = "none";
+        document.getElementById("step3").style.display      = "none";
+        document.getElementById("step4").style.display      = "none";
+        document.getElementById("errors").style.display     = "none";
+        document.getElementById("erName").style.display     = "none";
+        document.getElementById("erBirth").style.display    = "none";
+        document.getElementById("erPostal").style.display   = "none";
+        document.getElementById("erTown").style.display     = "none";
 
         document.getElementById("step2").style.display = "";
         document.getElementById("back").style.display  = "";
-
-        step2ContinueAbled();
     }
     if (step == 3)
     {
@@ -76,84 +171,7 @@ const stepManager = () => {
 
         document.getElementById("step4").style.display = "";
         document.getElementById("back").style.display  = "";
+
+        dataObj();
     }
 }
-
-/*
-const addID = () => 
-{
-    let sectionID = 0;
-
-    var selectAll = document.querySelectorAll("section");
-
-    for (let i = 0; i < selectAll.length; i++) {
-        var e = selectAll[i];
-    
-        e.id = sectionID;
-
-        sectionID ++;
-    }
-}
-
-const halfSize = () => 
-{
-    var e = document.querySelectorAll("section")[0];
-
-    e.style.fontSize = "50%";    
-}
-
-const ninjaLink = () => 
-{
-    var selectAll = document.querySelectorAll("a");
-
-    for (let i = 0; i < selectAll.length; i++) {
-        var e = selectAll[i];
-    
-        e.style.textDecoration = "none";
-        e.style.color = "black";
-
-        e.onmouseover = function() { mouseOver(e) };
-        e.onmouseout  = function() { mouseOut(e) };
-        e.onclick     = function() { click(e) };
-    }
-}
-
-const mouseOver = (ele) =>
-{
-    ele.style.textDecoration = "underline";
-    ele.style.color = "blue";
-}
-  
-const mouseOut = (ele) =>
-{
-    ele.style.textDecoration = "none";
-    ele.style.color = "black";
-}
-
-const click = (ele) => { ele.style.color = "red"; } //No menciono textDecoration porque este ya le será dado en el mouseOver
-
-const imgCheckbox = () =>
-{
-    var x = document.createElement("INPUT");
-    
-    x.setAttribute("type", "checkbox");    
-    document.body.appendChild(x);
-
-    var but = document.querySelectorAll("button")[0];
-
-    if(document.querySelectorAll("input")[0].checked) but.hidden = true;
-    else but.hidden = false;
-    
-}
-
-const changeImg = () => { document.querySelectorAll("button")[0].onclick = function() { juanjo() }; } //No verifico si checkbox está checked porque si no el botón no estaría disponible
-
-const juanjo = () =>
-{
-    document.querySelectorAll("img")[0].src = "https://dam.ngenespanol.com/wp-content/uploads/2019/03/luna-colores-nuevo.png";
-    
-    var but = document.querySelectorAll("button")[0];
-    but.disabled = true;
-    but.style.backgroundColor = "gray";
-}
-*/
