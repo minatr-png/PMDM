@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="index.css" rel="stylesheet" type="text/css"> 
+    <script src="main.js"></script>
+    <title>AE3</title>
+</head>
+<body>
+    
+    <ul>
+        <li><button id="back" class="navButton" onclick="backEvent()">Atrás</button></li>
+        <li><button id="continue" class="navButton" onclick="continueEvent()">Continuar</button></li>
+    </ul>
+    
+    <section id="step1">
+        <h1>AE3 asistente para recopilar datos de usuario</h1>
+        Esta aplicación es un asistente para la recopilación de datos que se divide en los siguientes pasos: <br>
+        1- Un formulario a rellenar con los campos obligatorios señalados con un asterisco <br>
+        2- Al completar el formulario se le enseñará los datos introducidos y deberá de confirmar si son correctos <br>
+        3- En caso de que estos sean correctos se le redigirá a una página donde se verá que todo ha salido correctamente <br>
+        Pero antes que nada debes introducir la callback URL para poder continuar <br><br>
+        Callback URL <input type="text" id="url"  oninput="step1ContinueAbled()"> <br><br>
+    </section>
+    <section id="step2">
+        *Nombre y apellidos: <input type="text" id="name" oninput="step2ContinueAbled()"><br><br>
+        *Fecha de nacimiento: <input type="date" id="birthDate" oninput="step2ContinueAbled()"><br><br>
+        Dirección: <input type="text"><br><br>
+        *Código postal: <input type="number" id="postal" oninput="step2ContinueAbled()"><br><br>
+        *Provincia:
+        <select>
+            <option value="Valencia">Valencia</option>
+            <option value="Alicante">Alicante</option>
+            <option value="Castellón">Castellón</option>
+        </select><br><br>
+        *Municipio: <input type="text" id="town" oninput="step2ContinueAbled()">
+    </section>
+    <section id="step3">
+
+    </section>
+    <section id="step4">
+        Los datos han sido enviados correctamente<br>
+        Muchas gracias  por su colaboración. <br><br>
+        <button id="finish" onclick="finish()">Terminar</button>
+    </section>
+</body>
+</html>

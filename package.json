@@ -1,0 +1,19 @@
+{
+  "name": "ae3",
+  "version": "1.0.0",
+  "description": "Asistente para recopilar información de usuarios",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minatr-png/PMDM.git"
+  },
+  "author": "Miguel Navarro Travé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minatr-png/PMDM/issues"
+  },
+  "homepage": "https://github.com/minatr-png/PMDM#readme"
+}
