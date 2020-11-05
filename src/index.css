@@ -16,14 +16,6 @@ button {
     border-radius: 3px;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    list-style-type: none;
-    overflow: hidden;
-}
-
 p {
     background-color: gray;
     color: salmon;
@@ -35,6 +27,19 @@ p {
 .navButton {
     height: 50px;
     width: 5%;
+}
+
+#navigationBar {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+#list {
+    list-style-type: none;
+    text-align: left;
 }
 
 #back {

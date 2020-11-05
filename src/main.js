@@ -15,9 +15,10 @@ H
 document.addEventListener('DOMContentLoaded', () => {
     const cont = document.getElementById('continue');
     const back = document.getElementById('back');
+    const con3 = document.getElementById('continue3');
+    const bac3 = document.getElementById('back3');
     const fini = document.getElementById('finish');
     const urlI = document.getElementById('url');
-    //const st2T = document.getElementsByClassName('step2Text');
     
     stepManager();
     //document.getElementById('postal').maxLength = '4';
@@ -26,15 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
     {
         if (step != 2)
         {
-            step ++;
-            stepManager();
+            nextStep();
         }
         else step2ContinueAbled(cont);
     });
+    con3.addEventListener('click', () =>
+    {
+        nextStep();
+    });
+    bac3.addEventListener('click', () =>
+    {
+        stepBack();
+    });
     back.addEventListener('click', () =>
     {
-        step --;
-        stepManager();
+        stepBack();
     });
     fini.addEventListener('click', () => 
     {
@@ -96,33 +103,38 @@ const step2ContinueAbled = (cont) => {
         var newContent = document.createTextNode("Hola!¿Qué tal?"); 
         newDiv.appendChild(newContent); //añade texto al div creado. 
 
-        // añade el elemento creado y su contenido al DOM 
-        var currentDiv = errors; 
-        document.body.insertBefore(newDiv, currentDiv); 
-        /*errors.textContent = errorsText;
-        errors.style.display = "";*/
+        // añade el elemento creado y su contenido al DOM  //ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORESSSSSSSSSSSSSSSSSSSSSSSS
+        /*var currentDiv = errors; 
+        document.body.insertBefore(newDiv, currentDiv); */
+        errors.textContent = errorsText;
+        errors.style.display = "";
     }
     else
     {
-        step ++;
-        stepManager();
+        dataObj();
+        nextStep();
     }
 }
 
 const dataObj = () => {
-    const nameV = document.getElementById('name');
-    const birtV = document.getElementById('birthdate');
-    const direV = document.getElementById('direction');
-    const postV = document.getElementById('postal');
-    const provV = document.getElementById('province');
-    const townV = document.getElementById('town');
+    const nameV = document.getElementById('name').value;
+    const birtV = document.getElementById('birthDate').value;
+    const direV = document.getElementById('direction').value;
+    const postV = document.getElementById('postal').value;
+    const provV = document.getElementById('province').value;
+    const townV = document.getElementById('town').value;
+    const ul    = document.getElementById('list');
 
-    var user = {name:nameV, birth:birtV, direction:direV, postal:postV, province:provV, town:townV};
+    var user = {Nombre:nameV, Fecha_de_nacimiento:birtV, Direccion:direV, C_Postal:postV, Provincia:provV, Municipio:townV};
 
-    /*var ul = document.getElementById("list");
-    ul.appendChild(document.createElement("li").value = "hkasdjhkasdjhkasdjhkjhkasjhkasdjhk");
+    while (ul.childElementCount != 0) ul.removeChild(ul.lastChild);
 
-    console.log(ul);*/
+    Object.entries(user).forEach(element => {
+        var li   = document.createElement("LI");
+        var text = document.createTextNode(element[0] + ": " + element[1])
+        li.appendChild(text);
+        document.getElementById("list").appendChild(li);
+    });
 }
 
 const stepManager = () => {
@@ -140,14 +152,14 @@ const stepManager = () => {
     }
     if (step == 2)
     {
-        document.getElementById("step1").style.display      = "none";
-        document.getElementById("step3").style.display      = "none";
-        document.getElementById("step4").style.display      = "none";
-        document.getElementById("errors").style.display     = "none";
-        document.getElementById("erName").style.display     = "none";
-        document.getElementById("erBirth").style.display    = "none";
-        document.getElementById("erPostal").style.display   = "none";
-        document.getElementById("erTown").style.display     = "none";
+        document.getElementById("step1").style.display    = "none";
+        document.getElementById("step3").style.display    = "none";
+        document.getElementById("step4").style.display    = "none";
+        document.getElementById("errors").style.display   = "none";
+        document.getElementById("erName").style.display   = "none";
+        document.getElementById("erBirth").style.display  = "none";
+        document.getElementById("erPostal").style.display = "none";
+        document.getElementById("erTown").style.display   = "none";
 
         document.getElementById("step2").style.display = "";
         document.getElementById("back").style.display  = "";
@@ -171,7 +183,15 @@ const stepManager = () => {
 
         document.getElementById("step4").style.display = "";
         document.getElementById("back").style.display  = "";
-
-        dataObj();
     }
+}
+
+const nextStep = () => {
+    step ++;
+    stepManager();
+}
+
+const stepBack = () => {
+    step --;
+    stepManager();
 }
