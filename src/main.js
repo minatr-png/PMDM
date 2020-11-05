@@ -1,17 +1,5 @@
 var step = 1;
 
-/*
-M
-A
-X
-L
-E
-N
-G
-T
-H
-*/
-
 document.addEventListener('DOMContentLoaded', () => {
     const cont = document.getElementById('continue');
     const back = document.getElementById('back');
@@ -21,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlI = document.getElementById('url');
     
     stepManager();
-    //document.getElementById('postal').maxLength = '4';
+
+    document.getElementById('postal').min = 0;
+    document.getElementById('postal').max = 9999;
+    document.getElementById('postal').maxLength = '4';
 
     cont.addEventListener('click', () =>
     {
@@ -72,41 +63,42 @@ const step2ContinueAbled = (cont) => {
 
     if (nameTF || birtTF || postTF === "" || postTF.length > 4 || townTF)
     {
-        var errorsText = "";
+        var errorsText = [];
 
         if (nameTF) 
         {
             erName.style.display  = "";
-            errorsText += erName.textContent;
+            errorsText.push(erName.textContent);
         }
         else erName.style.display = "none";
         if (birtTF) 
         {
             erBirth.style.display = "";
-            errorsText += erBirth.textContent + "\n";
+            errorsText.push(erBirth.textContent);
         }
         else erBirth.style.display = "none";
         if (townTF) 
         {
             erTown.style.display  = "";
-            errorsText += erTown.textContent + "\n";
+            errorsText.push(erTown.textContent);
         }
         else erTown.style.display = "none";
         if (postTF === "" || postTF.length > 4) 
         {
             erPostal.style.display   = "";
-            errorsText += erPostal.textContent + "\n";
+            errorsText.push(erPostal.textContent);
         }
         else erPostal.style.display = "none";
 
-        var newDiv = document.createElement("div"); 
-        var newContent = document.createTextNode("Hola!¿Qué tal?"); 
-        newDiv.appendChild(newContent); //añade texto al div creado. 
+        while (errors.childElementCount != 0) errors.removeChild(errors.lastChild);
 
-        // añade el elemento creado y su contenido al DOM  //ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORESSSSSSSSSSSSSSSSSSSSSSSS
-        /*var currentDiv = errors; 
-        document.body.insertBefore(newDiv, currentDiv); */
-        errors.textContent = errorsText;
+        errorsText.forEach(element => {
+            var li   = document.createElement("LI");
+            var text = document.createTextNode(element);
+            li.appendChild(text);
+            document.getElementById("errors").appendChild(li);
+        });
+
         errors.style.display = "";
     }
     else
@@ -131,7 +123,7 @@ const dataObj = () => {
 
     Object.entries(user).forEach(element => {
         var li   = document.createElement("LI");
-        var text = document.createTextNode(element[0] + ": " + element[1])
+        var text = document.createTextNode(element[0] + ": " + element[1]);
         li.appendChild(text);
         document.getElementById("list").appendChild(li);
     });

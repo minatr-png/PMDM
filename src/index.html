@@ -22,14 +22,14 @@
         Callback URL <input type="text" id="url" > <br><br>
     </section>
     <section id="step2">
-        <p id="errors"></p>
+        <ul id="errors" class="error"></ul>
         *Nombre y apellidos: <input type="text" id="name"><br><br>
-        <p id="erName">Debes introducir un nombre obligatoriamente</p>
+        <p id="erName" class="error">Debes introducir un nombre obligatoriamente</p>
         *Fecha de nacimiento: <input type="date" id="birthDate"><br><br>
-        <p id="erBirth">Debes introducir una fecha obligatoriamente</p>
+        <p id="erBirth" class="error">Debes introducir una fecha obligatoriamente</p>
         Dirección: <input type="text" id="direction"> <br><br>
         *Código postal: <input type="number" id="postal"><br><br>
-        <p id="erPostal">Debes introducir un código postal de hasta 4 cifras</p>
+        <p id="erPostal" class="error">Debes introducir un código postal de hasta 4 cifras</p>
         *Provincia:
         <select id="province">
             <option value="Valencia">Valencia</option>
@@ -37,7 +37,7 @@
             <option value="Castellón">Castellón</option>
         </select><br><br>
         *Municipio: <input type="text" id="town">
-        <p id="erTown">Debes introducir una provincia obligatoriamente</p>
+        <p id="erTown" class="error">Debes introducir una provincia obligatoriamente</p>
     </section>
     <section id="step3">
         ¿Son estos datos correctos?
