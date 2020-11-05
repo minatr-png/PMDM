@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stepManager();
 
     document.getElementById('postal').min = 0;
-    document.getElementById('postal').max = 9999;
+    document.getElementById('postal').max = 99999;
     document.getElementById('postal').maxLength = '4';
 
     cont.addEventListener('click', () =>
@@ -66,7 +66,7 @@ const step2ContinueAbled = (cont) => {
     var townTF = document.getElementById('town').value      == '';
     var postTF = document.getElementById('postal').value;
 
-    if (nameTF || birtTF || postTF === '' || postTF.length > 4 || townTF)
+    if (nameTF || birtTF || postTF === '' || postTF.length > 5 || townTF)
     {
         var errorsText = [];
 
