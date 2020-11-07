@@ -1,13 +1,13 @@
 let step = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const cont = document.getElementById('continue');
-    const back = document.getElementById('back');
-    const con3 = document.getElementById('continue3');
-    const bac3 = document.getElementById('back3');
-    const fini = document.getElementById('finish');
-    const urlI = document.getElementById('url');
-    const towM = document.getElementById('town');
+    const btnContinue  = document.getElementById('continue');
+    const btnBack      = document.getElementById('back');
+    const btnAccept    = document.getElementById('accept');
+    const btnBackStep3 = document.getElementById('backStep3');
+    const btnFinish    = document.getElementById('finish');
+    const inpUrl       = document.getElementById('url');
+    const inpTown      = document.getElementById('town');
     
     stepManager();
 
@@ -15,35 +15,35 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('postal').max = 99999;
     document.getElementById('postal').maxLength = '4';
 
-    cont.addEventListener('click', () =>
+    btnContinue.addEventListener('click', () =>
     {
         if (step != 2)
         {
             nextStep();
         }
-        else step2ContinueAbled(cont);
+        else step2ContinueAbled(btnContinue);
     });
-    back.addEventListener('click', () =>
+    btnBack.addEventListener('click', () =>
     {
         stepBack();
     });
-    con3.addEventListener('click', () =>
+    btnAccept.addEventListener('click', () =>
     {
         nextStep();
     });
-    bac3.addEventListener('click', () =>
+    btnBackStep3.addEventListener('click', () =>
     {
         stepBack();
     });
-    towM.addEventListener('focusout', () => 
+    inpTown.addEventListener('focusout', () => 
     {
-       towM.value = towM.value.toUpperCase();
+       inpTown.value = inpTown.value.toUpperCase();
     });
-    fini.addEventListener('click', () => 
+    btnFinish.addEventListener('click', () => 
     {
         location.replace(document.getElementById('url').value);
     });
-    urlI.addEventListener('input', () =>
+    inpUrl.addEventListener('input', () =>
     {
         step1ContinueAbled();
     });
@@ -54,7 +54,7 @@ const step1ContinueAbled = () => {
     else document.getElementById('continue').disabled = true;
 }
 
-const step2ContinueAbled = (cont) => {
+const step2ContinueAbled = () => {
     const errors   = document.getElementById('errors');
     const erName   = document.getElementById('erName');
     const erBirth  = document.getElementById('erBirth');
@@ -123,7 +123,6 @@ const dataObj = () => {
     const ul    = document.getElementById('list');
 
     const user = {Nombre:nameV, Fecha_de_nacimiento:birtV, Direccion:direV, C_Postal:postV, Provincia:provV, Municipio:townV};
-
     while (ul.childElementCount != 0) ul.removeChild(ul.lastChild);
 
     Object.entries(user).forEach(element => {
