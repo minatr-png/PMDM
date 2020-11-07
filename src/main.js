@@ -1,4 +1,4 @@
-var step = 1;
+let step = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
     const cont = document.getElementById('continue');
@@ -55,20 +55,20 @@ const step1ContinueAbled = () => {
 }
 
 const step2ContinueAbled = (cont) => {
-    var errors   = document.getElementById('errors');
-    var erName   = document.getElementById('erName');
-    var erBirth  = document.getElementById('erBirth');
-    var erTown   = document.getElementById('erTown');
-    var erPostal = document.getElementById('erPostal');
+    const errors   = document.getElementById('errors');
+    const erName   = document.getElementById('erName');
+    const erBirth  = document.getElementById('erBirth');
+    const erTown   = document.getElementById('erTown');
+    const erPostal = document.getElementById('erPostal');
 
-    var nameTF = document.getElementById('name').value      == '';
-    var birtTF = document.getElementById('birthDate').value == '';
-    var townTF = document.getElementById('town').value      == '';
-    var postTF = document.getElementById('postal').value;
+    const nameTF = document.getElementById('name').value      == '';
+    const birtTF = document.getElementById('birthDate').value == '';
+    const townTF = document.getElementById('town').value      == '';
+    const postTF = document.getElementById('postal').value;
 
     if (nameTF || birtTF || postTF === '' || postTF.length > 5 || townTF)
     {
-        var errorsText = [];
+        let errorsText = [];
 
         if (nameTF) 
         {
@@ -98,8 +98,8 @@ const step2ContinueAbled = (cont) => {
         while (errors.childElementCount != 0) errors.removeChild(errors.lastChild);
 
         errorsText.forEach(element => {
-            var li   = document.createElement('LI');
-            var text = document.createTextNode(element);
+            const li   = document.createElement('LI');
+            const text = document.createTextNode(element);
             li.appendChild(text);
             document.getElementById('errors').appendChild(li);
         });
@@ -122,13 +122,13 @@ const dataObj = () => {
     const townV = document.getElementById('town').value;
     const ul    = document.getElementById('list');
 
-    var user = {Nombre:nameV, Fecha_de_nacimiento:birtV, Direccion:direV, C_Postal:postV, Provincia:provV, Municipio:townV};
+    const user = {Nombre:nameV, Fecha_de_nacimiento:birtV, Direccion:direV, C_Postal:postV, Provincia:provV, Municipio:townV};
 
     while (ul.childElementCount != 0) ul.removeChild(ul.lastChild);
 
     Object.entries(user).forEach(element => {
-        var li   = document.createElement('LI');
-        var text = document.createTextNode(element[0] + ': ' + element[1]);
+        const li   = document.createElement('LI');
+        const text = document.createTextNode(element[0] + ': ' + element[1]);
         li.appendChild(text);
         document.getElementById('list').appendChild(li);
     });
