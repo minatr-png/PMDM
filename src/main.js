@@ -17,11 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnContinue.addEventListener('click', () =>
     {
-        if (step != 2)
-        {
-            nextStep();
-        }
-        else step2ContinueAbled(btnContinue);
+        if (step != 2) nextStep();
+        else step2ContinueAbled();
     });
     btnBack.addEventListener('click', () =>
     {
