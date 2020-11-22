@@ -7,8 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnBackStep3 = document.getElementById('backStep3');
     const btnFinish    = document.getElementById('finish');
     const inpUrl       = document.getElementById('url');
-    const inpTown      = document.getElementById('town');
-    
+    const inpTown      = document.getElementById('town');    
+    const urlText      = document.getElementById('urlP')
+
+    /*************************************************************************************************/
+    urlText.style.display = 'none';
+    if (localStorage.getItem('url').value != "")
+    {
+        inpUrl.value  = localStorage.getItem('url');
+        inpUrl.style.display = 'none';
+
+        urlText.innerHTML = localStorage.getItem('url');
+        urlText.style.display = '';
+    }
+
+    if (document.cookie.length != 0)
+    {
+        document.getElementById('name').value      = getCookie('name');
+        document.getElementById('birthDate').value = getCookie('birthDate');
+        document.getElementById('direction').value = getCookie('direction');
+        document.getElementById('postal').value    = getCookie('postal');
+        document.getElementById('province').value  = getCookie('province');
+        document.getElementById('town').value      = getCookie('town');
+
+        dataObj();
+        step = 3;
+    }
+    /*************************************************************************************************/
+
     stepManager();
 
     document.getElementById('postal').min = 0;
@@ -145,6 +171,10 @@ const stepManager = () => {
     }
     if (step == 2)
     {
+        /*************************************************************************************************/
+        localStorage.setItem('url', document.getElementById('url').value);
+        /*************************************************************************************************/
+
         document.getElementById('step1').style.display    = 'none';
         document.getElementById('step3').style.display    = 'none';
         document.getElementById('step4').style.display    = 'none';
@@ -159,6 +189,15 @@ const stepManager = () => {
     }
     if (step == 3)
     {
+        /*************************************************************************************************/
+        document.cookie = "name="+document.getElementById('name').value; 
+        document.cookie = "birthDate="+document.getElementById('birthDate').value;
+        document.cookie = "direction="+document.getElementById('direction').value;
+        document.cookie = "postal="+document.getElementById('postal').value;
+        document.cookie = "province="+document.getElementById('province').value;
+        document.cookie = "town="+document.getElementById('town').value;
+        /*************************************************************************************************/
+
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step4').style.display = 'none';
@@ -188,3 +227,18 @@ const stepBack = () => {
     step --;
     stepManager();
 }
+
+/*************************************************************************************************/
+const getCookie = (cookieName) => {
+    cookieName += "=";
+    var cookieSplited = document.cookie.split(';');
+
+    for(var i = 0; i < cookieSplited.length; i++) {
+      var cookie = cookieSplited[i];
+      while (cookie.charAt(0) == ' ') cookie = cookie.substring(1);
+      if (cookie.indexOf(cookieName) == 0)  return cookie.substring(cookieName.length, cookie.length);
+    }
+
+    return "";
+}
+/*************************************************************************************************/
