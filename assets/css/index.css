@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: silver;
+    font-size: 16px;
+}
+
+section {
+    margin: 1em auto;
+    padding: 1em;
+    background-color: azure;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+}
+
+label[for='page-description']::after {
+    content: '0';
+    background-color: salmon;
+    padding: 0 1em;
+}
