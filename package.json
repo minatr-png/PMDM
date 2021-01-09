@@ -1,0 +1,23 @@
+{
+  "name": "pmb-backoffice",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minatr-png/PMDM.git"
+  },
+  "author": "Miguel Navarro Travé",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minatr-png/PMDM/issues"
+  },
+  "homepage": "https://github.com/minatr-png/PMDM#readme"
+}
