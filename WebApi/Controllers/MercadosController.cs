@@ -11,30 +11,27 @@ namespace AE2.Controllers
     public class MercadosController : ApiController
     {
         // GET: api/Mercados
-        public IEnumerable<MercadosDTO> Get()
+        public IEnumerable<MercadoDTO> Get()
         {
             var repo = new MercadosRepository();
-            List<MercadosDTO> mercs = repo.RetrieveDTO();
-            return mercs;
-        }
+            List<MercadoDTO> mercs = repo.RetrieveDTO();
 
-        // GET: api/Mercados?eventoMer=valor1&tipo=valor2
-        public IEnumerable<MercadosDTO> GetEventoTipo(int eventoMer, int tipo)
-        {
-            var repo = new MercadosRepository();
-            List<MercadosDTO> mercs = repo.RetrieveByEventoAndTipo(eventoMer, tipo);
             return mercs;
         }
 
         // GET: api/Mercados/5
-        public string Get(int id)
+        public Mercado Get(int id)
         {
-            return "value";
+            var repo = new MercadosRepository();
+            Mercado merc = repo.Retrieve(id);
+            return merc;
         }
 
-        // POST: api/Mercados
-        public void Post([FromBody]string value)
+        // POST: api/Apuestas
+        public void Post(Mercado mercado)
         {
+            var repo = new MercadosRepository();
+            repo.Save(mercado);
         }
 
         // PUT: api/Mercados/5

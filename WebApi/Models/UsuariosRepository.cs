@@ -1,15 +1,23 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PlaceMyBetApp.Models;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
 
 namespace AE2.Models
 {
     public class UsuariosRepository
     {
-        private MySqlConnection Connect()
+        internal List<Usuario> Retrieve()
+        {
+            List<Usuario> usuario = new List<Usuario>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                usuario = context.Usuarios.ToList();
+            }
+
+            return usuario;
+        }
+        /*private MySqlConnection Connect()
         {
             string connString = "Server=127.0.0.1;Port=3306;DataBase=placemybet;UID=root;password=;SslMode=none";
             MySqlConnection con = new MySqlConnection(connString);
@@ -17,7 +25,7 @@ namespace AE2.Models
             return con;
         }
 
-        internal List<Usuarios> Retrieve()
+        internal List<Usuario> Retrieve()
         {
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
@@ -41,6 +49,6 @@ namespace AE2.Models
                 Debug.WriteLine("Se ha producido un error: " + e);
                 return null;
             }
-        }
+        }*/
     }
 }

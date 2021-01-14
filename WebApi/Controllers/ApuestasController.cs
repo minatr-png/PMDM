@@ -11,31 +11,32 @@ namespace AE2.Controllers
     public class ApuestasController : ApiController
     {
         // GET: api/Apuestas
-        public IEnumerable<ApuestasDTO> Get()
+        //[Authorize(Roles = "Admin")]
+        public IEnumerable<Apuesta> Get()
         {
             var repo = new ApuestasRepository();
-            List<ApuestasDTO> apus = repo.RetrieveDTO();
+            List<Apuesta> apus = repo.Retrieve();
             return apus;
         }
 
         // GET: api/Apuestas?emailUsu=valor1&mercadoApu=valor2
-        [Authorize(Roles="Admin")]
-        public IEnumerable<ApuestasMercadoEmail> GetMercadoEmail(int mercadoApu, string emailUsu)
+        /*public IEnumerable<ApuestaMercadoEmail> GetMercadoEmail(int mercadoApu, string emailUsu)
         {
             var repo = new ApuestasRepository();
-            List<ApuestasMercadoEmail> apus = repo.RetrieveByEmailAndMercado(mercadoApu, emailUsu);
-            return apus;
-        }
+            //List<ApuestaMercadoEmail> apus = repo.RetrieveByEmailAndMercado(mercadoApu, emailUsu);
+            return null;
+        }*/
 
-        // GET: api/Apuestas/5
-        public string Get(int id)
+        // GET: api/Apuestas/id
+        public Apuesta Get(int id)
         {
-            return "value";
+            var repo = new ApuestasRepository();
+            Apuesta apu = repo.Retrieve(id);
+            return apu;
         }
 
         // POST: api/Apuestas
-        [Authorize]
-        public void Post([FromBody]Apuestas apuesta)
+        public void Post(Apuesta apuesta)
         {
             var repo = new ApuestasRepository();
             repo.Save(apuesta);
@@ -46,7 +47,7 @@ namespace AE2.Controllers
         {
         }
 
-        // DELETE: api/Apuestas/5
+        // DELETE: api/Apuestas/id
         public void Delete(int id)
         {
         }

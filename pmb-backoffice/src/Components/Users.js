@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
@@ -17,6 +17,19 @@ class Users extends Component {
     }
 
     render() {
+        const btnColumn = (rowData) => {
+            return (
+                <Fragment>
+                    <button onClick={() => juanjo(rowData)}>Delete</button>
+                    <button>Restore key</button>
+                </Fragment>
+            );
+        }
+
+        const juanjo = (mag) => {
+            console.log(mag);
+        }
+
         return <div>
             <h1>Users</h1>
             Name:
@@ -31,10 +44,9 @@ class Users extends Component {
                     <Column field='name' header='Name' />
                     <Column field='surnames' header='Surnames' />
                     <Column field='age' header='Age' />
+                    <Column body={btnColumn} />
                 </DataTable>
             </div>
-            <button>Delete user</button>
-            <button>Reestablecer clave</button>
         </div>;
     }
 
@@ -43,7 +55,7 @@ class Users extends Component {
             const result = resolvedResult.data;
             var usersList = [];
             if (result != null) {
-                result.forEach(element => { usersList.push({ email: element.email, name: element.nombre, surnames: element.apellidos, age: element.edad }); });
+                result.forEach(element => { usersList.push({ email: element.UsuarioId, name: element.Nombre, surnames: element.Apellidos, age: element.Edad }); });
                 this.setState({ users: usersList });
             }
         }, (rejectedResult) => {

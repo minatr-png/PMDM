@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
+using PlaceMyBetApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,89 +11,56 @@ namespace AE2.Models
 {
     public class MercadosRepository
     {
-        private MySqlConnection Connect()
+        internal List<Mercado> Retrieve()
         {
-            string connString = "Server=127.0.0.1;Port=3306;DataBase=placemybet;UID=root;password=;SslMode=none";
-            MySqlConnection con = new MySqlConnection(connString);
+            List<Mercado> mercados = new List<Mercado>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                mercados = context.Mercados.Include(p => p.Evento).ToList();
+            }
 
-            return con;
+            return mercados;
         }
 
-        internal List<Mercados> Retrieve()
+        internal List<MercadoDTO> RetrieveDTO()
         {
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "select * from mercados";
-
-            try
+            List<Mercado> mercados = new List<Mercado>();
+            List<MercadoDTO> mercadosDTO = null;
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                con.Open();
-                MySqlDataReader res = command.ExecuteReader();
-
-                List<Mercados> mercs = new List<Mercados>();
-
-                while (res.Read()) mercs.Add(new Mercados(res.GetInt32(0), res.GetInt32(1), res.GetFloat(2), res.GetFloat(3), res.GetFloat(4), res.GetFloat(5), res.GetInt32(6)));
-
-                con.Close();
-                return mercs;
+                mercadosDTO = context.Mercados.Select(m => ToDTO(m)).ToList();
             }
-            catch (MySqlException e)
-            {
-                Debug.WriteLine("Se ha producido un error: " + e);
-                return null;
-            }
+
+            return mercadosDTO;
+
+            //List<MercadoDTO> mercadosDTO = new List<MercadoDTO>();
+            //for (int i = 0; i < mercados.Count; i++) mercadosDTO.Add(ToDTO(mercados[i]));
+
+
         }
 
-        internal List<MercadosDTO> RetrieveDTO()
+        internal Mercado Retrieve(int id)
         {
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "select * from mercados";
-
-            try
+            Mercado mercado;
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                con.Open();
-                MySqlDataReader res = command.ExecuteReader();
-
-                List<MercadosDTO> mercs = new List<MercadosDTO>();
-
-                while (res.Read()) mercs.Add(new MercadosDTO(res.GetInt32(1), res.GetFloat(2), res.GetFloat(3)));
-
-                con.Close();
-                return mercs;
+                mercado = context.Mercados.Where(s => s.MercadoId == id).FirstOrDefault();
             }
-            catch (MySqlException e)
-            {
-                Debug.WriteLine("Se ha producido un error: " + e);
-                return null;
-            }
+
+            return mercado;
         }
 
-        internal List<MercadosDTO> RetrieveByEventoAndTipo(int evento, int tipo)
+        internal void Save(Mercado mercado)
         {
-            MySqlConnection con = Connect();
-            MySqlCommand command = con.CreateCommand();
-            command.CommandText = "SELECT * FROM mercados WHERE eventoMer = @A AND tipo = @A2;";
-            command.Parameters.AddWithValue("@A", evento);
-            command.Parameters.AddWithValue("@A2", tipo);
+            PlaceMyBetContext context = new PlaceMyBetContext();
 
-            try
-            {
-                con.Open();
-                MySqlDataReader res = command.ExecuteReader();
+            context.Mercados.Add(mercado);
+            context.SaveChanges();
+        }
 
-                List<MercadosDTO> mercs = new List<MercadosDTO>();
-
-                while (res.Read()) mercs.Add(new MercadosDTO(res.GetInt32(1), res.GetFloat(2), res.GetFloat(3)));
-
-                con.Close();
-                return mercs;
-            }
-            catch (MySqlException e)
-            {
-                Debug.WriteLine("Se ha producido un error: " + e);
-                return null;
-            }
+        public static MercadoDTO ToDTO(Mercado m) 
+        { 
+            return new MercadoDTO(m.Tipo, m.CuotaOver, m.CuotaUnder); 
         }
     }
 }

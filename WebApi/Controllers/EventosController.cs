@@ -11,17 +11,23 @@ namespace AE2.Controllers
     public class EventosController : ApiController
     {
         // GET: api/Eventos
-        public IEnumerable<EventosDTO> Get()
+        public IEnumerable<Evento> Get()
         {
             var repo = new EventosRepository();
 
-            List<EventosDTO> eves = repo.RetrieveDTO();
+            List<Evento> eves = repo.Retrieve();
 
             return eves;
         }
 
+        public void Post(Evento evento)
+        {
+            var repo = new EventosRepository();
+            repo.Save(evento);
+        }
+
         // GET: api/Eventos/5
-        public Eventos Get(int id)
+        public Evento Get(int id)
         {
             /*var repo = new EventosRepository();
 
@@ -31,18 +37,22 @@ namespace AE2.Controllers
         }
 
         // POST: api/Eventos
-        public void Post([FromBody]string value)
+        /*public void Post([FromBody]string value)
         {
-        }
+        }*/
 
         // PUT: api/Eventos/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, string nuevo_local, string nuevo_visitante)
         {
+            var repo = new EventosRepository();
+            repo.Update(id, nuevo_local, nuevo_visitante);
         }
 
-        // DELETE: api/Eventos/5
+        // DELETE: api/Eventos/id
         public void Delete(int id)
         {
+            var repo = new EventosRepository();
+            repo.Delete(id);
         }
     }
 }
