@@ -12,8 +12,8 @@ class Bets extends Component {
             bets: [],
             allBets: [],
             email: "",
-            marketId: 0,
-            eventId: 0
+            marketId: "",
+            eventId: ""
         };
     }
 
@@ -37,11 +37,11 @@ class Bets extends Component {
         return <div>
             <h1>Bets</h1>
             Email:
-            <input type="text" onChange={this.emailChange}/>
+            <InputText onChange={this.emailChange}/>
             Market:
-            <InputText keyFilter="pnum" onChange={this.marketChange}/>
+            <InputText keyfilter="pnum" onChange={this.marketChange}/>
             Event:
-            <input type="text" onChange={this.eventChange}/>
+            <InputText keyfilter="pnum" onChange={this.eventChange}/>
             <div className="card">
                 <DataTable value={this.state.bets} scrollable scrollHeight="500px">
                     <Column field='betId' header='Bet ID' />
@@ -76,35 +76,29 @@ class Bets extends Component {
         if (this.state.email === "") noEmail = true;
         if (this.state.marketId === "") noMarket = true;
         if (this.state.eventId === "") noEvent = true;
-        if (this.state.email !== "") {            
+        if (noEmail && noEvent && noMarket) this.setState({ bets: this.state.allBets });      
+        else {
             this.state.allBets.forEach(element => {
-                if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase())) 
+                if (noEmail) {
+                    if (noMarket && element.eventId == this.state.eventId) 
+                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                    else if(noEvent && element.marketId == this.state.marketId)
+                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                    else if (element.eventId == this.state.eventId && element.marketId == this.state.marketId)
+                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                }
+                else if (noMarket) {
+                    if(noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()))
+                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                    else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId)
+                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                }
+                else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId && element.marketId == this.state.marketId)
                     betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });
             });
             this.setState({ bets: betList });
         }
-        else this.setState({ bets: this.state.allBets });
     }
-
-    /*
-        var eventsList = [], noName = false, noDate = false;
-        const basicDate = new Date(this.state.date);
-        const reorderedDate = basicDate.getDate() + "-" + (basicDate.getMonth() + 1) + "-" + basicDate.getFullYear();
-        if (this.state.name === "") noName = true;
-        if (this.state.date === "") noDate = true;
-        if (noName && noDate) this.setState({ events: this.state.allEvents });
-        else {
-            this.state.allEvents.forEach(element => {
-                if (noName && element.date === reorderedDate)
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
-                else if (noDate && element.local.toUpperCase().startsWith(this.state.name.toUpperCase()))
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
-                else if (element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) && element.date === reorderedDate)
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
-            });
-            this.setState({ events: eventsList });
-        }
-    */
 }
 
 export default Bets;

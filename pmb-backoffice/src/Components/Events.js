@@ -90,16 +90,14 @@ class Events extends Component {
         else {
             this.state.allEvents.forEach(element => {
                 if (noName && element.date === reorderedDate)
-                    {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("1");}
-                else if (noDate)
-                {
+                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
+                else if (noDate) {
                     if ( element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
-                        {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("2");}
+                        eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date })
                 }
-                else if (element.date === reorderedDate)
-                {
+                else if (element.date === reorderedDate) {
                     if (element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
-                        {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("3");}
+                        eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
                 }
             });
             this.setState({ events: eventsList });
