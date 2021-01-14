@@ -1,6 +1,7 @@
 import { Component, Fragment } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { InputText } from 'primereact/inputtext';
 
 const axios = require('axios');
 
@@ -45,9 +46,9 @@ class Events extends Component {
         return <div>
             <h1>Events</h1>
             Date:
-            <input type="date" name="date" onChange={this.dateChange} />
+            <InputText type="date" onChange={this.dateChange} />
             Event name:
-            <input type="text" name="name" onChange={this.nameChange} />
+            <InputText onChange={this.nameChange} />
             <div className="card">
                 <DataTable value={this.state.events} scrollable scrollHeight="500px">
                     <Column field='eventId' header='Event ID' />
@@ -89,11 +90,17 @@ class Events extends Component {
         else {
             this.state.allEvents.forEach(element => {
                 if (noName && element.date === reorderedDate)
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
-                else if (noDate && element.local.toUpperCase().startsWith(this.state.name.toUpperCase()))
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
-                else if (element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) && element.date === reorderedDate)
-                    eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
+                    {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("1");}
+                else if (noDate)
+                {
+                    if ( element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
+                        {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("2");}
+                }
+                else if (element.date === reorderedDate)
+                {
+                    if (element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
+                        {eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });console.log("3");}
+                }
             });
             this.setState({ events: eventsList });
         }
