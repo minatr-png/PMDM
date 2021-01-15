@@ -30,14 +30,14 @@ class Events extends Component {
 
 
     render() {
-        const juanjo = (mag) => {
-            console.log(mag);
+        const deleteEvent = (data) => {
+            console.log(data);
         }
 
         const btnColumn = (rowData) => {
             return (
                 <Fragment>
-                    <button onClick={() => juanjo(rowData)}>Eliminar</button>
+                    <button onClick={() => deleteEvent(rowData.eventId)}>Eliminar</button>
                     <button>Cambiar fecha</button>
                 </Fragment>
             );
