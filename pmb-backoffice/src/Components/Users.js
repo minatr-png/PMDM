@@ -36,14 +36,10 @@ class Users extends Component {
         const btnColumn = (rowData) => {
             return (
                 <Fragment>
-                    <button onClick={() => juanjo(rowData)}>Delete</button>
+                    <button onClick={() => this.deleteUser(rowData.email)}>Delete</button>
                     <button>Restore key</button>
                 </Fragment>
             );
-        }
-
-        const juanjo = (mag) => {
-            console.log(mag);
         }
 
         return <div>
@@ -64,6 +60,12 @@ class Users extends Component {
                 </DataTable>
             </div>
         </div>;
+    }
+
+    deleteUser(data) {
+        axios.delete('https://localhost:44305/api/Usuarios?id=' + data).then(()=>{
+            this.loadUsers();
+        });
     }
 
     loadUsers() {
@@ -103,7 +105,7 @@ class Users extends Component {
                         {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}
                 }
                 else if (noSurname && element.email.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.name.toUpperCase().startsWith(this.state.name.toUpperCase())){
-                    {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}
+                    usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });
                 }
                 else if (element.email.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.name.toUpperCase().startsWith(this.state.name.toUpperCase()) && element.surnames.toUpperCase().startsWith(this.state.surname.toUpperCase()))
                     {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}

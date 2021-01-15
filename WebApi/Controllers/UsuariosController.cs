@@ -35,9 +35,11 @@ namespace AE2.Controllers
         {
         }
 
-        // DELETE: api/Usuarios/5
-        public void Delete(int id)
+        // DELETE: api/Usuarios?id=x
+        public void Delete(string id)
         {
+            var repo = new UsuariosRepository();
+            repo.Delete(id);
         }
     }
 }

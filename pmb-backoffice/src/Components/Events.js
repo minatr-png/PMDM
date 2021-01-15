@@ -28,21 +28,16 @@ class Events extends Component {
         this.setState({ name: event.target.value }, () => { this.filter(); });
     };
 
+    btnColumn = rowData => {
+        return (
+            <Fragment>
+                <button onClick={() => this.deleteEvent(rowData.eventId)}>Eliminar</button>
+                <button>Cambiar fecha</button>
+            </Fragment>
+        );
+    }
 
     render() {
-        const deleteEvent = (data) => {
-            console.log(data);
-        }
-
-        const btnColumn = (rowData) => {
-            return (
-                <Fragment>
-                    <button onClick={() => deleteEvent(rowData.eventId)}>Eliminar</button>
-                    <button>Cambiar fecha</button>
-                </Fragment>
-            );
-        }
-
         return <div>
             <h1>Events</h1>
             Date:
@@ -55,11 +50,17 @@ class Events extends Component {
                     <Column field='local' header='Local name' />
                     <Column field='visitor' header='Visitor name' />
                     <Column field='date' header='Date' />
-                    <Column body={btnColumn}></Column>
+                    <Column body={this.btnColumn}></Column>
                 </DataTable>
             </div>
             <button>Nuevo evento</button>
         </div>;
+    }
+
+    deleteEvent(data) {
+        axios.delete('https://localhost:44305/api/Eventos/' + data).then(()=>{
+            this.loadEvents();
+        });
     }
 
     loadEvents() {
@@ -92,7 +93,7 @@ class Events extends Component {
                 if (noName && element.date === reorderedDate)
                     eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date });
                 else if (noDate) {
-                    if ( element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
+                    if (element.local.toUpperCase().startsWith(this.state.name.toUpperCase()) || element.visitor.toUpperCase().startsWith(this.state.name.toUpperCase()))
                         eventsList.push({ eventId: element.eventId, local: element.local, visitor: element.visitor, date: element.date })
                 }
                 else if (element.date === reorderedDate) {
