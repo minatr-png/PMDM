@@ -102,8 +102,11 @@ class Users extends Component {
                     else if (element.email.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.surnames.toUpperCase().startsWith(this.state.surname.toUpperCase()))
                         {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}
                 }
+                else if (noSurname && element.email.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.name.toUpperCase().startsWith(this.state.name.toUpperCase())){
+                    {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}
+                }
                 else if (element.email.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.name.toUpperCase().startsWith(this.state.name.toUpperCase()) && element.surnames.toUpperCase().startsWith(this.state.surname.toUpperCase()))
-                    usersList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });
+                    {usersList.push({ email: element.email, name: element.name, surnames: element.surnames, age: element.age });}
             });
             this.setState({ users: usersList });
         }

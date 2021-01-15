@@ -93,8 +93,11 @@ class Bets extends Component {
                     else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId)
                         {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
                 }
-                else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId && element.marketId == this.state.marketId)
-                    betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });
+                else if (noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.marketId == this.state.marketId){
+                    {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                } 
+                else if( element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId && element.marketId == this.state.marketId)              
+                    {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
             });
             this.setState({ bets: betList });
         }
