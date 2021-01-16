@@ -11,6 +11,6 @@ Después deberás arrancar la web api, que se encuentra en la carpeta con su mis
 
 Al haber arrancado ese archivo en caso de no tener la base de datos creada lo primero que se deberá de hacer es ejecutar el siguiente comando "update-database" en la consola del administrador de paquetes la cual se encuentra en la pestaña "herramientas" dentro de "Administrador de paquetes NuGet" en "Consola del Administrador de paquetes".
 
-Finalmente deberas de abrir en una "cmd" la carpeta "pmb-backoffice" y estando ahí ejecutar el comando "npm i react-scripts" y una vez instalado esto "npm start".
+Finalmente deberas de abrir en una "cmd" la carpeta "pmb-backoffice" y estando ahí ejecutar el comando "serve -s build". Pero para poder usarlo antes debes tener instalado serve, para ello deberás de usar en comando "npm install -g serve".
 
 Si quieres tener más datos en la base de datos para ver el funcionamiento de la aplicación en mejor forma se recomienda ejecutar archivo "Ejemplos.sql" con algún programa como heidisql.

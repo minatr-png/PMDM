@@ -35,6 +35,10 @@ class Bets extends Component {
     };
 
     render() {
+        const distance = {
+            marginLeft: "40px"
+        }
+
         return <div>
             <h1>Bets</h1>
             Email:
@@ -46,13 +50,12 @@ class Bets extends Component {
             <DataTable value={this.state.bets} scrollable scrollHeight="500px" className={'table'}>
                 <Column field='betId' header='Bet ID'/>
                 <Column field='userId' header='User email' />
-                <Column field='quota' header='Quota' />
                 <Column field='money' header='Money' />
                 <Column field='marketId' header='Mercado ID' />
                 <Column field='eventId' header='Event ID' />
             </DataTable>
             <NavLink to={'/newMarket'} >New market</NavLink>
-            <NavLink to={'/markets'} >Block market</NavLink>
+            <NavLink to={'/markets'} style={distance}>Block market</NavLink>
         </div>;
     }
 
@@ -61,7 +64,7 @@ class Bets extends Component {
             const result = resolvedResult.data;
             var betsList = [];
             if (result != null) {
-                result.forEach(element => { betsList.push({ userId: element.UsuarioId, betId: element.ApuestaId, quota: element.Cuota, money: element.Dinero, marketId: element.Mercado.MercadoId, eventId: element.Mercado.EventoId }); });
+                result.forEach(element => { betsList.push({ userId: element.UsuarioId, betId: element.ApuestaId, money: element.Dinero, marketId: element.Mercado.MercadoId, eventId: element.Mercado.EventoId }); });
                 this.setState({ bets: betsList });
                 this.setState({ allBets: betsList });
             }

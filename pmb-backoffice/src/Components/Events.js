@@ -37,21 +37,23 @@ class Events extends Component {
     btnColumn = rowData => {
         return (
             <Fragment>
-                <button onClick={() => this.deleteEvent(rowData.eventId)}>Eliminar</button>
-                <button onClick={() => this.changeEventDate(rowData.eventId)}>Cambiar fecha</button>
+                <button onClick={() => this.deleteEvent(rowData.eventId)}>Delete</button>
+                <button onClick={() => this.changeEventDate(rowData.eventId)}>Change date</button>
             </Fragment>
         );
     }
 
     render() {
+    const distance = {
+        marginLeft: "400px"
+    }
+
         return <div>
             <h1>Events</h1>
             Date:
             <InputText type="date" onChange={this.dateChange}/>
             Event name:
-            <InputText onChange={this.nameChange} />
-            New Date:
-            <InputText type="date" onChange={this.newDateChange}/>
+            <InputText onChange={this.nameChange} />            
             <div className="card">
                 <DataTable value={this.state.events} scrollable scrollHeight="500px">
                     <Column field='eventId' header='Event ID' />
@@ -62,6 +64,7 @@ class Events extends Component {
                 </DataTable>
             </div>
             <NavLink to={'/newEvent'} >New Event</NavLink>
+            <nobr style={distance}>New Date <InputText type="date" onChange={this.newDateChange}/></nobr>
         </div>;
     }
 
