@@ -1,0 +1,55 @@
+INSERT INTO usuarios VALUES ( "manolo@gmail.com", "Manolo", "Travé Cabero", 50, "2021-12-14"); 
+INSERT INTO usuarios VALUES ( "ricardo@gmail.com", "Ricardo", "Gonzalez Soria", 50, "2021-12-29");
+INSERT INTO usuarios VALUES ( "alba@gmail.com", "Alba", "Navarro Navarro", 50, "2021-10-01");
+INSERT INTO usuarios VALUES ( "jorge@gmail.com", "Jorge", "García Cabero", 50, "2021-07-20");
+INSERT INTO usuarios VALUES ( "julia@gmail.com", "Julia", "Cabero Caballero", 50, "2021-05-24");
+INSERT INTO usuarios VALUES ( "celia@gmail.com", "Celia", "Travé Ratia", 50, "2021-03-22");
+INSERT INTO usuarios VALUES ( "andreu@gmail.com", "Andreu", "Casanova Navalón", 50, "2021-02-21");
+INSERT INTO usuarios VALUES ( "ana@gmail.com", "Ana", "Martín López", 50, "2021-01-10");
+INSERT INTO usuarios VALUES ( "laura@gmail.com", "Laura", "Sanchis Salvador", 50, "2021-01-02");
+INSERT INTO usuarios VALUES ( "elias@gmail.com", "Elias", "Romero Zaragozá", 50, "2021-01-12");
+
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 3000, "BBVA", "manolo@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 3500, "Bankia", "ricardo@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 1020, "Sabadell", "alba@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 400, "Evo", "jorge@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 600, "Caja Mar", "julia@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 1080, "Caja Madrid", "celia@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 2200, "Bankinter", "andreu@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 30, "Bankia", "ana@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 1000, "Santander", "laura@gmail.com"); 
+INSERT INTO cuentas (Saldo, Banco, UsuarioId)  VALUES ( 10000, "Sabadell", "elias@gmail.com"); 
+
+INSERT INTO eventos VALUES (500, "Sevilla", "Granada", "2020-10-11"); 
+INSERT INTO eventos VALUES (501, "Valencia", "Real Madrid", "2020-10-2"); 
+INSERT INTO eventos VALUES (502, "Barcelona", "Celta", "2020-10-11"); 
+INSERT INTO eventos VALUES (503, "Celta", "Levante", "2020-10-11"); 
+INSERT INTO eventos VALUES (504, "Villarreal", "Valencia", "2020-10-11"); 
+INSERT INTO eventos VALUES (505, "Osasuna", "Betis", "2020-10-11"); 
+INSERT INTO eventos VALUES (506, "Barcelona", "Sevilla", "2020-10-11"); 
+INSERT INTO eventos VALUES (507, "Granada", "Mirandés", "2020-10-11"); 
+
+INSERT INTO mercados VALUES (500, 2, 1.9, 1.9, 332, 332, TRUE, 500); 
+INSERT INTO mercados VALUES (501, 1, 1.9, 1.9, 130, 130, FALSE, 501); 
+INSERT INTO mercados VALUES (502, 3, 1.9, 1.9, 433, 433, FALSE, 502); 
+INSERT INTO mercados VALUES (503, 2, 1.9, 1.9, 933, 933, FALSE, 503);
+INSERT INTO mercados VALUES (504, 2, 1.9, 1.9, 193, 193, FALSE, 504);
+INSERT INTO mercados VALUES (505, 1, 1.9, 1.9, 255, 255, TRUE, 505);
+INSERT INTO mercados VALUES (506, 3, 1.9, 1.9, 455, 455, FALSE, 506);
+INSERT INTO mercados VALUES (507, 3, 1.9, 1.9, 55, 55, FALSE, 507);
+
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 24, 23, 50, "2021-07-11", "over", 500, "manolo@gmail.com"); 
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-06-10", "under", 500, "manolo@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-04-10", "under", 502, "alba@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-02-10", "over", 500, "jorge@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-01-10", "over", 501, "jorge@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-12-10", "under", 505, "juanjo@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-03-10", "over", 506, "celia@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-05-10", "under", 504, "manolo@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-10-10", "under", 501, "celia@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-11-10", "over", 501, "ana@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-01-10", "under", 502, "elias@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-12-10", "over", 507, "jorge@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-12-10", "under", 503, "laura@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-08-10", "under", 503, "ricardo@gmail.com");
+INSERT INTO apuestas (Tipo, Cuota, Dinero, Fecha, OverUnder, MercadoId, UsuarioId)  VALUES ( 30, 21, 30, "2021-09-10", "under", 503, "ricardo@gmail.com");

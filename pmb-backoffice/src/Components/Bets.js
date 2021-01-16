@@ -23,36 +23,34 @@ class Bets extends Component {
     }
 
     emailChange = event => {
-        this.setState({ email: event.target.value }, () => {this.filter();});
+        this.setState({ email: event.target.value }, () => { this.filter(); });
     };
 
     marketChange = event => {
-        this.setState({ marketId: event.target.value }, () => {this.filter();});
+        this.setState({ marketId: event.target.value }, () => { this.filter(); });
     };
 
     eventChange = event => {
-        this.setState({ eventId: event.target.value }, () => {this.filter();});
+        this.setState({ eventId: event.target.value }, () => { this.filter(); });
     };
 
     render() {
         return <div>
             <h1>Bets</h1>
             Email:
-            <InputText onChange={this.emailChange}/>
+            <InputText onChange={this.emailChange} />
             Market:
-            <InputText keyfilter="pnum" onChange={this.marketChange}/>
+            <InputText keyfilter="pnum" onChange={this.marketChange} />
             Event:
             <InputText keyfilter="pnum" onChange={this.eventChange}/>
-            <div className="card">
-                <DataTable value={this.state.bets} scrollable scrollHeight="500px">
-                    <Column field='betId' header='Bet ID' />
-                    <Column field='userId' header='User email' />
-                    <Column field='quota' header='Quota' />
-                    <Column field='money' header='Money' />
-                    <Column field='marketId' header='Mercado ID' />
-                    <Column field='eventId' header='Event ID' />
-                </DataTable>
-            </div>
+            <DataTable value={this.state.bets} scrollable scrollHeight="500px" className={'table'}>
+                <Column field='betId' header='Bet ID'/>
+                <Column field='userId' header='User email' />
+                <Column field='quota' header='Quota' />
+                <Column field='money' header='Money' />
+                <Column field='marketId' header='Mercado ID' />
+                <Column field='eventId' header='Event ID' />
+            </DataTable>
             <NavLink to={'/newMarket'} >New market</NavLink>
             <button>Block market</button>
         </div>;
@@ -77,28 +75,22 @@ class Bets extends Component {
         if (this.state.email === "") noEmail = true;
         if (this.state.marketId === "") noMarket = true;
         if (this.state.eventId === "") noEvent = true;
-        if (noEmail && noEvent && noMarket) this.setState({ bets: this.state.allBets });      
+        if (noEmail && noEvent && noMarket) this.setState({ bets: this.state.allBets });
         else {
             this.state.allBets.forEach(element => {
                 if (noEmail) {
-                    if (noMarket && element.eventId == this.state.eventId) 
-                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
-                    else if(noEvent && element.marketId == this.state.marketId)
-                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
-                    else if (element.eventId == this.state.eventId && element.marketId == this.state.marketId)
-                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                    if (noMarket && element.eventId == this.state.eventId) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
+                    else if (noEvent && element.marketId == this.state.marketId) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
+                    else if (element.eventId == this.state.eventId && element.marketId == this.state.marketId) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
                 }
                 else if (noMarket) {
-                    if(noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()))
-                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
-                    else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId)
-                        {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                    if (noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase())) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
+                    else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
                 }
-                else if (noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.marketId == this.state.marketId){
-                    {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
-                } 
-                else if( element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId && element.marketId == this.state.marketId)              
-                    {betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId });}
+                else if (noEvent && element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.marketId == this.state.marketId) {
+                    { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
+                }
+                else if (element.userId.toUpperCase().startsWith(this.state.email.toUpperCase()) && element.eventId == this.state.eventId && element.marketId == this.state.marketId) { betList.push({ userId: element.userId, betId: element.betId, quota: element.quota, money: element.money, marketId: element.marketId, eventId: element.eventId }); }
             });
             this.setState({ bets: betList });
         }
