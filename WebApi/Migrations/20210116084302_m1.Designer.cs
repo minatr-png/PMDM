@@ -9,7 +9,7 @@ using PlaceMyBetApp.Models;
 namespace PlaceMyBetApp.Migrations
 {
     [DbContext(typeof(PlaceMyBetContext))]
-    [Migration("20210115233706_m1")]
+    [Migration("20210116084302_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace PlaceMyBetApp.Migrations
                             ApuestaId = 1,
                             Cuota = 24f,
                             Dinero = 50f,
-                            Fecha = new DateTime(2021, 1, 16, 0, 37, 6, 4, DateTimeKind.Local).AddTicks(934),
+                            Fecha = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
                             MercadoId = 1,
                             OverUnder = "over",
                             Tipo = 2,
@@ -91,7 +91,7 @@ namespace PlaceMyBetApp.Migrations
                         new
                         {
                             EventoId = 1,
-                            Fecha = new DateTime(2021, 1, 16, 0, 37, 6, 6, DateTimeKind.Local).AddTicks(894),
+                            Fecha = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
                             NomLocal = "Valencia",
                             NomVisitante = "Real Madrid"
                         });
@@ -102,6 +102,9 @@ namespace PlaceMyBetApp.Migrations
                     b.Property<int>("MercadoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<bool>("Bloqueado")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<float>("CuotaOver")
                         .HasColumnType("float");
@@ -131,6 +134,7 @@ namespace PlaceMyBetApp.Migrations
                         new
                         {
                             MercadoId = 1,
+                            Bloqueado = false,
                             CuotaOver = 14f,
                             CuotaUnder = 10f,
                             DineroOver = 20f,
@@ -167,7 +171,7 @@ namespace PlaceMyBetApp.Migrations
                             UsuarioId = "juanjo@gmail.com",
                             Apellidos = "Navarro Molero",
                             Edad = 32,
-                            FechaAlta = new DateTime(2021, 1, 16, 0, 37, 6, 2, DateTimeKind.Local).AddTicks(812),
+                            FechaAlta = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
                             Nombre = "Juanjo"
                         });
                 });

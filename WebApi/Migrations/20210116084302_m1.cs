@@ -49,6 +49,7 @@ namespace PlaceMyBetApp.Migrations
                     CuotaUnder = table.Column<float>(nullable: false),
                     DineroOver = table.Column<float>(nullable: false),
                     DineroUnder = table.Column<float>(nullable: false),
+                    Bloqueado = table.Column<bool>(nullable: false),
                     EventoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -117,12 +118,12 @@ namespace PlaceMyBetApp.Migrations
             migrationBuilder.InsertData(
                 table: "Eventos",
                 columns: new[] { "EventoId", "Fecha", "NomLocal", "NomVisitante" },
-                values: new object[] { 1, new DateTime(2021, 1, 16, 0, 37, 6, 6, DateTimeKind.Local).AddTicks(894), "Valencia", "Real Madrid" });
+                values: new object[] { 1, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), "Valencia", "Real Madrid" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "UsuarioId", "Apellidos", "Edad", "FechaAlta", "Nombre" },
-                values: new object[] { "juanjo@gmail.com", "Navarro Molero", 32, new DateTime(2021, 1, 16, 0, 37, 6, 2, DateTimeKind.Local).AddTicks(812), "Juanjo" });
+                values: new object[] { "juanjo@gmail.com", "Navarro Molero", 32, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), "Juanjo" });
 
             migrationBuilder.InsertData(
                 table: "Cuentas",
@@ -131,13 +132,13 @@ namespace PlaceMyBetApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "Mercados",
-                columns: new[] { "MercadoId", "CuotaOver", "CuotaUnder", "DineroOver", "DineroUnder", "EventoId", "Tipo" },
-                values: new object[] { 1, 14f, 10f, 20f, 32f, 1, 2 });
+                columns: new[] { "MercadoId", "Bloqueado", "CuotaOver", "CuotaUnder", "DineroOver", "DineroUnder", "EventoId", "Tipo" },
+                values: new object[] { 1, false, 14f, 10f, 20f, 32f, 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "Apuestas",
                 columns: new[] { "ApuestaId", "Cuota", "Dinero", "Fecha", "MercadoId", "OverUnder", "Tipo", "UsuarioId" },
-                values: new object[] { 1, 24f, 50f, new DateTime(2021, 1, 16, 0, 37, 6, 4, DateTimeKind.Local).AddTicks(934), 1, "over", 2, "juanjo@gmail.com" });
+                values: new object[] { 1, 24f, 50f, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), 1, "over", 2, "juanjo@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Apuestas_MercadoId",
