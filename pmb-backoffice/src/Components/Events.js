@@ -47,11 +47,11 @@ class Events extends Component {
         return <div>
             <h1>Events</h1>
             Date:
-            <InputText type="date" onChange={this.dateChange} />
+            <InputText type="date" onChange={this.dateChange}/>
             Event name:
             <InputText onChange={this.nameChange} />
             New Date:
-            <InputText type="date" onChange={this.newDateChange} />
+            <InputText type="date" onChange={this.newDateChange}/>
             <div className="card">
                 <DataTable value={this.state.events} scrollable scrollHeight="500px">
                     <Column field='eventId' header='Event ID' />
@@ -61,8 +61,7 @@ class Events extends Component {
                     <Column body={this.btnColumn}></Column>
                 </DataTable>
             </div>
-            <NavLink to={'/newEvent'} >Events</NavLink>
-            <button onClick={this.openModal}>Nuevo evento</button>
+            <NavLink to={'/newEvent'} >New Event</NavLink>
         </div>;
     }
 

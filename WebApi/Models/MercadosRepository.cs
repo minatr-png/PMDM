@@ -79,5 +79,15 @@ namespace AE2.Models
         { 
             return new MercadoDTO(m.Tipo, m.CuotaOver, m.CuotaUnder); 
         }
+
+        internal void UpdateDate(int id, bool blocked)
+        {
+            Mercado m = Retrieve(id);
+            m.Bloqueado = blocked;
+
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            context.Mercados.Update(m);
+            context.SaveChanges();
+        }
     }
 }

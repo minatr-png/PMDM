@@ -11,10 +11,10 @@ namespace AE2.Controllers
     public class MercadosController : ApiController
     {
         // GET: api/Mercados
-        public IEnumerable<MercadoDTO> Get()
+        public IEnumerable<Mercado> Get()
         {
             var repo = new MercadosRepository();
-            List<MercadoDTO> mercs = repo.RetrieveDTO();
+            List<Mercado> mercs = repo.Retrieve();
 
             return mercs;
         }
@@ -27,7 +27,7 @@ namespace AE2.Controllers
             return merc;
         }
 
-        // POST: api/Apuestas
+        // POST: api/Mercados
         public void Post(Mercado mercado)
         {
             var repo = new MercadosRepository();
@@ -35,8 +35,10 @@ namespace AE2.Controllers
         }
 
         // PUT: api/Mercados/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, bool blocked)
         {
+            var repo = new MercadosRepository();
+            repo.UpdateDate(id, blocked);
         }
 
         // DELETE: api/Mercados/5
