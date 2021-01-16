@@ -79,18 +79,18 @@ class Reports extends Component {
         let basicOptions = {
             legend: {
                 labels: {
-                    fontColor: '#495057'
+                    fontColor: '#ffff'
                 }
             },
             scales: {
                 xAxes: [{
                     ticks: {
-                        fontColor: '#495057'
+                        fontColor: '#ffff'
                     }
                 }],
                 yAxes: [{
                     ticks: {
-                        fontColor: '#495057'
+                        fontColor: '#ffff'
                     }
                 }]
             }

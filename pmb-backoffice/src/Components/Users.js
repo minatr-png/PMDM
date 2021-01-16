@@ -42,16 +42,25 @@ class Users extends Component {
             );
         }
 
+        const tableStyle = {
+            marginRight: "20px",
+            marginTop: "10px"
+        }
+
+        const inputMargin = {
+            marginLeft: "10px"
+        }
+
         return <div>
             <h1>Users</h1>
             Name:
             <InputText type="text" onChange={this.nameChange}/>
-            Surname:
-            <InputText type="text" onChange={this.surnameChange}/>
-            Email:
-            <InputText type="text" onChange={this.emailChange}/>
+            <nobr style={inputMargin}>Surname:
+            <InputText type="text" onChange={this.surnameChange}/></nobr>
+            <nobr style={inputMargin}>Email:
+            <InputText type="text" onChange={this.emailChange}/></nobr>
             <div className="card">
-                <DataTable value={this.state.users} scrollable scrollHeight="500px">
+                <DataTable value={this.state.users} scrollable scrollHeight="500px" style={tableStyle}>
                     <Column field='email' header='Email' />
                     <Column field='name' header='Name' />
                     <Column field='surnames' header='Surnames' />

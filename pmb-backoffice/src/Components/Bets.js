@@ -39,15 +39,25 @@ class Bets extends Component {
             marginLeft: "40px"
         }
 
+        const inputMargin = {
+            marginLeft: "10px"
+        }
+
+        const tableStyle = {
+            marginRight: "20px",
+            marginTop: "10px",
+            marginBottom: "10px"
+        }
+
         return <div>
             <h1>Bets</h1>
             Email:
             <InputText onChange={this.emailChange} />
-            Market:
-            <InputText keyfilter="pnum" onChange={this.marketChange} />
-            Event:
-            <InputText keyfilter="pnum" onChange={this.eventChange}/>
-            <DataTable value={this.state.bets} scrollable scrollHeight="500px" className={'table'}>
+            <nobr style={inputMargin}>Market:
+            <InputText keyfilter="pnum" onChange={this.marketChange} /></nobr>
+            <nobr style={inputMargin}>Event:
+            <InputText keyfilter="pnum" onChange={this.eventChange}/></nobr>
+            <DataTable value={this.state.bets} scrollable scrollHeight="500px" style={tableStyle}>
                 <Column field='betId' header='Bet ID'/>
                 <Column field='userId' header='User email' />
                 <Column field='money' header='Money' />

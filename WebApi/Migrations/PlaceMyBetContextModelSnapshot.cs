@@ -58,7 +58,7 @@ namespace PlaceMyBetApp.Migrations
                             ApuestaId = 1,
                             Cuota = 24f,
                             Dinero = 50f,
-                            Fecha = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
+                            Fecha = new DateTime(2021, 1, 16, 22, 54, 19, 581, DateTimeKind.Local).AddTicks(2348),
                             MercadoId = 1,
                             OverUnder = "over",
                             Tipo = 2,
@@ -89,7 +89,7 @@ namespace PlaceMyBetApp.Migrations
                         new
                         {
                             EventoId = 1,
-                            Fecha = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
+                            Fecha = new DateTime(2021, 1, 16, 22, 54, 19, 582, DateTimeKind.Local).AddTicks(2346),
                             NomLocal = "Valencia",
                             NomVisitante = "Real Madrid"
                         });
@@ -169,7 +169,7 @@ namespace PlaceMyBetApp.Migrations
                             UsuarioId = "juanjo@gmail.com",
                             Apellidos = "Navarro Molero",
                             Edad = 32,
-                            FechaAlta = new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520),
+                            FechaAlta = new DateTime(2021, 1, 16, 22, 54, 19, 578, DateTimeKind.Local).AddTicks(2365),
                             Nombre = "Juanjo"
                         });
                 });

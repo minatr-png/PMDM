@@ -118,12 +118,12 @@ namespace PlaceMyBetApp.Migrations
             migrationBuilder.InsertData(
                 table: "Eventos",
                 columns: new[] { "EventoId", "Fecha", "NomLocal", "NomVisitante" },
-                values: new object[] { 1, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), "Valencia", "Real Madrid" });
+                values: new object[] { 1, new DateTime(2021, 1, 16, 22, 54, 19, 582, DateTimeKind.Local).AddTicks(2346), "Valencia", "Real Madrid" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "UsuarioId", "Apellidos", "Edad", "FechaAlta", "Nombre" },
-                values: new object[] { "juanjo@gmail.com", "Navarro Molero", 32, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), "Juanjo" });
+                values: new object[] { "juanjo@gmail.com", "Navarro Molero", 32, new DateTime(2021, 1, 16, 22, 54, 19, 578, DateTimeKind.Local).AddTicks(2365), "Juanjo" });
 
             migrationBuilder.InsertData(
                 table: "Cuentas",
@@ -138,7 +138,7 @@ namespace PlaceMyBetApp.Migrations
             migrationBuilder.InsertData(
                 table: "Apuestas",
                 columns: new[] { "ApuestaId", "Cuota", "Dinero", "Fecha", "MercadoId", "OverUnder", "Tipo", "UsuarioId" },
-                values: new object[] { 1, 24f, 50f, new DateTime(2021, 1, 16, 9, 43, 1, 500, DateTimeKind.Local).AddTicks(520), 1, "over", 2, "juanjo@gmail.com" });
+                values: new object[] { 1, 24f, 50f, new DateTime(2021, 1, 16, 22, 54, 19, 581, DateTimeKind.Local).AddTicks(2348), 1, "over", 2, "juanjo@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Apuestas_MercadoId",

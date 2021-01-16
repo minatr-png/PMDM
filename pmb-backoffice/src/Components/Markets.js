@@ -27,9 +27,13 @@ class Markets extends Component {
     }
 
     render() {
+        const tableStyle = {
+            marginRight: "20px"
+        }
+
         return <div>
             <h1>Markets</h1>
-            <DataTable value={this.state.markets} scrollable scrollHeight="500px">
+            <DataTable value={this.state.markets} scrollable scrollHeight="500px" style={tableStyle}>
                 <Column field='marketId' header='Market ID' />
                 <Column field='type' header='Type' />
                 <Column field='blocked' header='Blocked' />

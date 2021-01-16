@@ -48,14 +48,23 @@ class Events extends Component {
         marginLeft: "400px"
     }
 
+    const inputMargin = {
+        marginLeft: "10px"
+    }
+
+    const tableStyle = {
+        marginRight: "20px",
+        marginTop: "10px",
+        marginBottom: "10px"
+    }
         return <div>
             <h1>Events</h1>
             Date:
             <InputText type="date" onChange={this.dateChange}/>
-            Event name:
-            <InputText onChange={this.nameChange} />            
+            <nobr style={inputMargin}>Event name:
+            <InputText onChange={this.nameChange} style={inputMargin}/></nobr>
             <div className="card">
-                <DataTable value={this.state.events} scrollable scrollHeight="500px">
+                <DataTable value={this.state.events} scrollable scrollHeight="500px" style={tableStyle}>
                     <Column field='eventId' header='Event ID' />
                     <Column field='local' header='Local name' />
                     <Column field='visitor' header='Visitor name' />

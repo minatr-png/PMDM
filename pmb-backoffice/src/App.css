@@ -1,28 +1,32 @@
 .App {
-  border: 1px dotted deepskyblue;
   box-sizing: border-box;
   display: flex;
   height: 100vh;  
-  width: 100%;  
+  width: 100%;
+  background-color: #3C6383;  
+  color: white;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  border: 1px dotted deeppink;
+  border: 1px solid black;
   min-width: 200px;
+  margin-right: 20px;
+  padding-left: 20px;
+  color: white;
 }
 
 .menu-active {
-  background-color: brown;
+  background-color: #325069;
 }
 
 .menu li {
   list-style: none;
+  text-decoration: none;
 }
 .content {
   display: flex;
   flex-direction: column;
-  border: 1px dotted black;
   flex-grow: 1;
 }
