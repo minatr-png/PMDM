@@ -48,8 +48,10 @@ namespace AE2.Controllers
         }
 
         // DELETE: api/Apuestas/id
-        public void Delete(int id)
+        public void Delete(int idMercado)
         {
+            var repo = new ApuestasRepository();
+            repo.DeleteFromMercado(idMercado);
         }
     }
 }

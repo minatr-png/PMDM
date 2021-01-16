@@ -35,8 +35,8 @@ namespace PlaceMyBetApp.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cuenta>().HasData(new Cuenta(1, 1000, "Sabadell", "juanjo@gmail.com"));
-            modelBuilder.Entity<Usuario>().HasData(new Usuario("juanjo@gmail.com", "Juanjo", "Navarro Molero", 32));
-            modelBuilder.Entity<Apuesta>().HasData(new Apuesta(1, 2, 24, 50, DateTime.Now, "over", "juanjo@gmail.com"));
+            modelBuilder.Entity<Usuario>().HasData(new Usuario("juanjo@gmail.com", "Juanjo", "Navarro Molero", 32, DateTime.Now));
+            modelBuilder.Entity<Apuesta>().HasData(new Apuesta(1, 2, 24, 50, DateTime.Now, "over", 1,"juanjo@gmail.com"));
             modelBuilder.Entity<Mercado>().HasData(new Mercado(1, 2, 14, 10, 20, 32, 1));
             modelBuilder.Entity<Evento>().HasData(new Evento(1, "Valencia", "Real Madrid", DateTime.Now));
         }

@@ -29,23 +29,21 @@ namespace AE2.Controllers
         // GET: api/Eventos/5
         public Evento Get(int id)
         {
-            /*var repo = new EventosRepository();
-
-            Eventos eve = repo.Retrieve();*/
-
             return null;
         }
-
-        // POST: api/Eventos
-        /*public void Post([FromBody]string value)
-        {
-        }*/
 
         // PUT: api/Eventos/5
         public void Put(int id, string nuevo_local, string nuevo_visitante)
         {
             var repo = new EventosRepository();
             repo.Update(id, nuevo_local, nuevo_visitante);
+        }
+
+        // PUT: api/Eventos/5
+        public void Put(int id, string fecha)
+        {
+            var repo = new EventosRepository();
+            repo.UpdateDate(id, DateTime.Parse(fecha));
         }
 
         // DELETE: api/Eventos/id

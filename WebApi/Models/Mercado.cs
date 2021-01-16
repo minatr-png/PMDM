@@ -7,7 +7,7 @@ namespace AE2.Models
 {
     public class Mercado
     {
-        public Mercado(int mercadoId, int tipo, float cuotaOver, float cuotaUnder, float dineroOver, float dineroUnder, int eventoId)
+        public Mercado(int mercadoId, int tipo, float cuotaOver, float cuotaUnder, float dineroOver, float dineroUnder, int eventoId, bool bloqueado)
         {
             MercadoId   = mercadoId;
             Tipo        = tipo;
@@ -16,6 +16,7 @@ namespace AE2.Models
             DineroOver  = dineroOver;
             DineroUnder = dineroUnder;
             EventoId    = eventoId;
+            Bloqueado   = bloqueado;
         }
 
         public int   MercadoId   { get; set; }
@@ -24,6 +25,7 @@ namespace AE2.Models
         public float CuotaUnder  { get; set; }
         public float DineroOver  { get; set; }
         public float DineroUnder { get; set; }
+        public bool  Bloqueado   { get; set; }
 
         public Evento        Evento   { get; set; }
         public int           EventoId { get; set; }

@@ -35,6 +35,6 @@ namespace AE2.Models
 
             context.Usuarios.Remove(Retrieve(id));
             context.SaveChanges();
-        }
+        }        
     }
 }

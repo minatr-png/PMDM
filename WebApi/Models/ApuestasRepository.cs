@@ -44,6 +44,17 @@ namespace AE2.Models
             return apuesta;
         }
 
+        internal List<Apuesta> RetrieveByMercado(int id)
+        {
+            List<Apuesta> apuestas = new List<Apuesta>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                apuestas.Add(context.Apuestas.Where(s => s.MercadoId == id).FirstOrDefault());
+            }
+
+            return apuestas;
+        }
+
         internal void Save(Apuesta apuesta)
         {
             PlaceMyBetContext contextApuesta = new PlaceMyBetContext();
@@ -70,6 +81,17 @@ namespace AE2.Models
                 }
 
                 contextMercado.SaveChanges();
+            }
+        }
+
+        internal void DeleteFromMercado(int id)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+
+            foreach (Apuesta apu in RetrieveByMercado(id))
+            {
+                context.Apuestas.Remove(apu);
+                context.SaveChanges();
             }
         }
 

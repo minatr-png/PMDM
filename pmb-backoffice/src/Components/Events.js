@@ -12,7 +12,8 @@ class Events extends Component {
             events: [],
             allEvents: [],
             name: "",
-            date: ""
+            date: "",
+            newDate: ""
         };
     }
 
@@ -28,11 +29,15 @@ class Events extends Component {
         this.setState({ name: event.target.value }, () => { this.filter(); });
     };
 
+    newDateChange = event => {
+        this.setState({ newDate: event.target.value });
+    };
+
     btnColumn = rowData => {
         return (
             <Fragment>
                 <button onClick={() => this.deleteEvent(rowData.eventId)}>Eliminar</button>
-                <button>Cambiar fecha</button>
+                <button onClick={() => this.changeEventDate(rowData.eventId)}>Cambiar fecha</button>
             </Fragment>
         );
     }
@@ -44,6 +49,8 @@ class Events extends Component {
             <InputText type="date" onChange={this.dateChange} />
             Event name:
             <InputText onChange={this.nameChange} />
+            New Date:
+            <InputText type="date" onChange={this.newDateChange} />
             <div className="card">
                 <DataTable value={this.state.events} scrollable scrollHeight="500px">
                     <Column field='eventId' header='Event ID' />
@@ -58,9 +65,17 @@ class Events extends Component {
     }
 
     deleteEvent(data) {
-        axios.delete('https://localhost:44305/api/Eventos/' + data).then(()=>{
+        axios.delete('https://localhost:44305/api/Eventos/' + data).then(() => {
             this.loadEvents();
         });
+    }
+
+    changeEventDate(id) {
+        if (this.state.newDate !== "") {
+            axios.put('https://localhost:44305/api/Eventos?id=' + id + '&fecha=' + this.state.newDate).then(() => {
+                this.loadEvents();
+            });
+        }
     }
 
     loadEvents() {

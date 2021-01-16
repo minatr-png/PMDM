@@ -41,5 +41,6 @@ namespace AE2.Controllers
             var repo = new UsuariosRepository();
             repo.Delete(id);
         }
+
     }
 }

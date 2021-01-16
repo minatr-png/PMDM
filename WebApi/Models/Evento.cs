@@ -15,6 +15,8 @@ namespace AE2.Models
             Fecha        = fecha;
         }
 
+        public Evento() { }
+
         public int      EventoId     { get; set; }
         public string   NomLocal     { get; set; }
         public string   NomVisitante { get; set; }

@@ -9,8 +9,8 @@ using PlaceMyBetApp.Models;
 namespace PlaceMyBetApp.Migrations
 {
     [DbContext(typeof(PlaceMyBetContext))]
-    [Migration("20201203105028_m3")]
-    partial class m3
+    [Migration("20210115233706_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,7 +34,7 @@ namespace PlaceMyBetApp.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("MercadoId")
+                    b.Property<int>("MercadoId")
                         .HasColumnType("int");
 
                     b.Property<string>("OverUnder")
@@ -60,7 +60,8 @@ namespace PlaceMyBetApp.Migrations
                             ApuestaId = 1,
                             Cuota = 24f,
                             Dinero = 50f,
-                            Fecha = new DateTime(2020, 12, 3, 11, 50, 27, 251, DateTimeKind.Local).AddTicks(1579),
+                            Fecha = new DateTime(2021, 1, 16, 0, 37, 6, 4, DateTimeKind.Local).AddTicks(934),
+                            MercadoId = 1,
                             OverUnder = "over",
                             Tipo = 2,
                             UsuarioId = "juanjo@gmail.com"
@@ -90,7 +91,7 @@ namespace PlaceMyBetApp.Migrations
                         new
                         {
                             EventoId = 1,
-                            Fecha = new DateTime(2020, 12, 3, 11, 50, 27, 261, DateTimeKind.Local).AddTicks(2741),
+                            Fecha = new DateTime(2021, 1, 16, 0, 37, 6, 6, DateTimeKind.Local).AddTicks(894),
                             NomLocal = "Valencia",
                             NomVisitante = "Real Madrid"
                         });
@@ -108,7 +109,7 @@ namespace PlaceMyBetApp.Migrations
                     b.Property<float>("CuotaUnder")
                         .HasColumnType("float");
 
-                    b.Property<float>("DineoroOver")
+                    b.Property<float>("DineroOver")
                         .HasColumnType("float");
 
                     b.Property<float>("DineroUnder")
@@ -132,7 +133,7 @@ namespace PlaceMyBetApp.Migrations
                             MercadoId = 1,
                             CuotaOver = 14f,
                             CuotaUnder = 10f,
-                            DineoroOver = 20f,
+                            DineroOver = 20f,
                             DineroUnder = 32f,
                             EventoId = 1,
                             Tipo = 2
@@ -147,11 +148,11 @@ namespace PlaceMyBetApp.Migrations
                     b.Property<string>("Apellidos")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("CuentaUsu")
-                        .HasColumnType("int");
-
                     b.Property<int>("Edad")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -165,8 +166,8 @@ namespace PlaceMyBetApp.Migrations
                         {
                             UsuarioId = "juanjo@gmail.com",
                             Apellidos = "Navarro Molero",
-                            CuentaUsu = 1,
                             Edad = 32,
+                            FechaAlta = new DateTime(2021, 1, 16, 0, 37, 6, 2, DateTimeKind.Local).AddTicks(812),
                             Nombre = "Juanjo"
                         });
                 });
@@ -207,7 +208,9 @@ namespace PlaceMyBetApp.Migrations
                 {
                     b.HasOne("AE2.Models.Mercado", "Mercado")
                         .WithMany("Apuestas")
-                        .HasForeignKey("MercadoId");
+                        .HasForeignKey("MercadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AE2.Models.Usuario", "Usuario")
                         .WithMany("Apuestas")

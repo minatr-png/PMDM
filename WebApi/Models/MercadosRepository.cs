@@ -32,11 +32,6 @@ namespace AE2.Models
             }
 
             return mercadosDTO;
-
-            //List<MercadoDTO> mercadosDTO = new List<MercadoDTO>();
-            //for (int i = 0; i < mercados.Count; i++) mercadosDTO.Add(ToDTO(mercados[i]));
-
-
         }
 
         internal Mercado Retrieve(int id)
@@ -50,12 +45,34 @@ namespace AE2.Models
             return mercado;
         }
 
+        internal List<Mercado> RetrieveByEvento(int id)
+        {
+            List<Mercado> mercados = new List<Mercado>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                mercados.Add(context.Mercados.Where(s => s.EventoId == id).FirstOrDefault());
+            }
+
+            return mercados;
+        }
+
         internal void Save(Mercado mercado)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();
 
             context.Mercados.Add(mercado);
             context.SaveChanges();
+        }
+
+        internal void DeleteFromEvento(int id)
+        {            
+            PlaceMyBetContext context = new PlaceMyBetContext();
+
+            foreach (Mercado merc in RetrieveByEvento(id))
+            {
+                context.Mercados.Remove(merc);
+                context.SaveChanges();
+            }            
         }
 
         public static MercadoDTO ToDTO(Mercado m) 

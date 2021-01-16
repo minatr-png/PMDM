@@ -43,13 +43,22 @@ namespace AE2.Models
 
         internal void Update(int id, string nuevo_local, string nuevo_visitante)
         {
-            Evento e = Retrieve(id); //He creado la función retrieve aunque no estuviera ya que creo que así puedo reusarla
-
+            Evento e = Retrieve(id); 
             e.NomLocal     = nuevo_local;
             e.NomVisitante = nuevo_visitante;
 
             PlaceMyBetContext context = new PlaceMyBetContext();
             context.Eventos.Update(e);  
+            context.SaveChanges();
+        }
+
+        internal void UpdateDate(int id, DateTime fecha)
+        {
+            Evento e = Retrieve(id); 
+            e.Fecha = fecha;
+
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            context.Eventos.Update(e);
             context.SaveChanges();
         }
 
@@ -60,6 +69,5 @@ namespace AE2.Models
             context.Eventos.Remove(Retrieve(id)); 
             context.SaveChanges();
         }
-
     }
 }
