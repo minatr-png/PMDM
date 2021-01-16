@@ -28,7 +28,6 @@ class NewMarket extends Component {
     render() {
         return <div>
             <h1>New Market</h1>
-            <h5>Basic</h5>
             <p>Blocked: <InputText onChange={this.blockedChange} placeholder="YES or NO"/></p>
             <p>Id de evento: <InputText onChange={this.eventIdChange} /></p>
             <button onClick={() => this.createMarket()}>Create market</button>
