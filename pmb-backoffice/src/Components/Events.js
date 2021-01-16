@@ -2,6 +2,7 @@ import { Component, Fragment } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
+import { NavLink } from 'react-router-dom';
 
 const axios = require('axios');
 
@@ -60,7 +61,8 @@ class Events extends Component {
                     <Column body={this.btnColumn}></Column>
                 </DataTable>
             </div>
-            <button>Nuevo evento</button>
+            <NavLink to={'/newEvent'} >Events</NavLink>
+            <button onClick={this.openModal}>Nuevo evento</button>
         </div>;
     }
 
