@@ -39,6 +39,7 @@ namespace AE2.Controllers
         public void Post(Apuesta apuesta)
         {
             var repo = new ApuestasRepository();
+
             repo.Save(apuesta);
         }
 

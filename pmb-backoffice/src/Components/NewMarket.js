@@ -31,7 +31,7 @@ class NewMarket extends Component {
             <p>Blocked: <InputText onChange={this.blockedChange} placeholder="YES or NO"/></p>
             <p>Id de evento: <InputText onChange={this.eventIdChange} /></p>
             <button onClick={() => this.createMarket()}>Create market</button>
-            <p><NavLink to={'/events'} >Return</NavLink></p>
+            <p><NavLink to={'/bets'} >Return</NavLink></p>
         </div>;
     }
 
