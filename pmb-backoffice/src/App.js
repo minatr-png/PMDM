@@ -6,6 +6,7 @@ import Events from './Components/Events';
 import Reports from './Components/Reports';
 import Menu from './Components/Menu';
 import NewEvent from './Components/NewEvent';
+import NewMarket from './Components/NewMarket';
 import { Switch, Route, NavLink } from 'react-router-dom';
 
 import 'primereact/resources/themes/saga-blue/theme.css';
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path={'/bets'}>
             <Bets></Bets>
+          </Route>
+          <Route path={'/newMarket'}>
+            <NewMarket></NewMarket>
           </Route>
           <Route path={'/events'}>
             <Events></Events>

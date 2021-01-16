@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
+import { NavLink } from 'react-router-dom';
 
 const axios = require('axios');
 
@@ -52,7 +53,7 @@ class Bets extends Component {
                     <Column field='eventId' header='Event ID' />
                 </DataTable>
             </div>
-            <button>New market</button>
+            <NavLink to={'/newMarket'} >New market</NavLink>
             <button>Block market</button>
         </div>;
     }
