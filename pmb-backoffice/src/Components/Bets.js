@@ -64,8 +64,8 @@ class Bets extends Component {
                 <Column field='marketId' header='Mercado ID' />
                 <Column field='eventId' header='Event ID' />
             </DataTable>
-            <NavLink to={'/newMarket'} >New market</NavLink>
-            <NavLink to={'/markets'} style={distance}>Block market</NavLink>
+            <NavLink to={'/newMarket'} > <button>New market</button></NavLink>
+            <NavLink to={'/markets'} style={distance}><button>Block market</button></NavLink>
         </div>;
     }
 

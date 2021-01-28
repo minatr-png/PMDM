@@ -72,7 +72,7 @@ class Events extends Component {
                     <Column body={this.btnColumn}></Column>
                 </DataTable>
             </div>
-            <NavLink to={'/newEvent'} >New Event</NavLink>
+            <NavLink to={'/newEvent'} ><button>New Event</button></NavLink>
             <nobr style={distance}>New Date <InputText type="date" onChange={this.newDateChange}/></nobr>
         </div>;
     }

@@ -5,11 +5,11 @@ class Menu extends Component {
     render() {
         return <div>
             <h2>PlaceMyBet</h2>
-            <li><NavLink to={'/'} exact activeClassName={'menu-active'}>Home</NavLink></li>
-            <li><NavLink to={'/users'} activeClassName={'menu-active'}>Users</NavLink></li>
-            <li><NavLink to={'/bets'} activeClassName={'menu-active'}>Bets</NavLink></li>
-            <li><NavLink to={'/events'} activeClassName={'menu-active'}>Events</NavLink></li>
-            <li><NavLink to={'/reports'} activeClassName={'menu-active'}>Reports</NavLink></li>
+            <li><NavLink to={'/'} exact  style={{color: 'black',  textDecoration: 'none'}} activeStyle={{ color: 'white' }}>Home</NavLink></li>
+            <li><NavLink to={'/users'}   style={{color: 'black',  textDecoration: 'none'}} activeStyle={{ color: 'white' }}>Users</NavLink></li>
+            <li><NavLink to={'/bets'}    style={{color: 'black',  textDecoration: 'none'}} activeStyle={{ color: 'white' }}>Bets</NavLink></li>
+            <li><NavLink to={'/events'}  style={{color: 'black',  textDecoration: 'none'}} activeStyle={{ color: 'white' }}>Events</NavLink></li>
+            <li><NavLink to={'/reports'} style={{color: 'black',  textDecoration: 'none'}} activeStyle={{ color: 'white' }}>Reports</NavLink></li>
         </div>;
     }
 }
