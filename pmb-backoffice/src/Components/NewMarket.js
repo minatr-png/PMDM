@@ -14,7 +14,7 @@ class NewMarket extends Component {
     }
 
     blockedChange = event => {
-        var val;
+        let val;
         if(event.target.value.toUpperCase() === "YES" ) val = 1;
         else if(event.target.value.toUpperCase() === "NO") val = 0;
         else val = -1;

@@ -72,7 +72,7 @@ class Bets extends Component {
     loadBets() {
         axios.get('https://localhost:44305/api/Apuestas').then((resolvedResult) => {
             const result = resolvedResult.data;
-            var betsList = [];
+            let betsList = [];
             if (result != null) {
                 result.forEach(element => { betsList.push({ userId: element.UsuarioId, betId: element.ApuestaId, money: element.Dinero, marketId: element.Mercado.MercadoId, eventId: element.Mercado.EventoId }); });
                 this.setState({ bets: betsList });
@@ -84,7 +84,7 @@ class Bets extends Component {
     }
 
     filter() {
-        var betList = [], noEmail = false, noMarket = false, noEvent = false;
+        let betList = [], noEmail = false, noMarket = false, noEvent = false;
         if (this.state.email === "") noEmail = true;
         if (this.state.marketId === "") noMarket = true;
         if (this.state.eventId === "") noEvent = true;

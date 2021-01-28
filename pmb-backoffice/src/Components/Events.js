@@ -44,10 +44,6 @@ class Events extends Component {
     }
 
     render() {
-    const distance = {
-        marginLeft: "400px"
-    }
-
     const inputMargin = {
         marginLeft: "10px"
     }
@@ -73,7 +69,7 @@ class Events extends Component {
                 </DataTable>
             </div>
             <NavLink to={'/newEvent'} ><button>New Event</button></NavLink>
-            <nobr style={distance}>New Date <InputText type="date" onChange={this.newDateChange}/></nobr>
+            <view style={{marginLeft: 1000}}>New Date <InputText type="date" onChange={this.newDateChange}/></view>
         </div>;
     }
 
@@ -94,7 +90,7 @@ class Events extends Component {
     loadEvents() {
         axios.get('https://localhost:44305/api/Eventos').then((resolvedResult) => {
             const result = resolvedResult.data;
-            var eventsList = [];
+            let eventsList = [];
             if (result != null) {
                 result.forEach(element => {
                     const basicDate = new Date(element.Fecha);
@@ -110,7 +106,7 @@ class Events extends Component {
     }
 
     filter() {
-        var eventsList = [], noName = false, noDate = false;
+        let eventsList = [], noName = false, noDate = false;
         const basicDate = new Date(this.state.date);
         const reorderedDate = basicDate.getDate() + "-" + (basicDate.getMonth() + 1) + "-" + basicDate.getFullYear();
         if (this.state.name === "") noName = true;

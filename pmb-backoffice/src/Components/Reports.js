@@ -18,7 +18,7 @@ class Reports extends Component {
     }
 
     emptyMonthArray = () => {
-        var array = [];
+        let array = [];
         for (let i = 0; i <= 11; i++) {
             array[i] = 0;
         }
@@ -26,7 +26,7 @@ class Reports extends Component {
     }
 
     betsPerMonth = () => {
-        var monthlyBets = this.emptyMonthArray();
+        let monthlyBets = this.emptyMonthArray();
         axios.get('https://localhost:44305/api/Apuestas').then((resolvedResult) => {
             const result = resolvedResult.data;
             if (result != null) {
@@ -42,7 +42,7 @@ class Reports extends Component {
     }
 
     usersPerMonth = () => {
-        var monthlyUsers = this.emptyMonthArray();
+        let monthlyUsers = this.emptyMonthArray();
         axios.get('https://localhost:44305/api/Usuarios').then((resolvedResult) => {
             const result = resolvedResult.data;
             if (result != null) {

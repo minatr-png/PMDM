@@ -80,7 +80,7 @@ class Users extends Component {
     loadUsers() {
         axios.get('https://localhost:44305/api/Usuarios').then((resolvedResult) => {
             const result = resolvedResult.data;
-            var usersList = [];
+            let usersList = [];
             if (result != null) {
                 result.forEach(element => { usersList.push({ email: element.UsuarioId, name: element.Nombre, surnames: element.Apellidos, age: element.Edad }); });
                 this.setState({ users: usersList });
@@ -92,7 +92,7 @@ class Users extends Component {
     }
 
     filter() {
-        var usersList = [], noEmail = false, noName = false, noSurname = false;
+        let usersList = [], noEmail = false, noName = false, noSurname = false;
         if (this.state.email === "") noEmail = true;
         if (this.state.name === "") noName = true;
         if (this.state.surname === "") noSurname = true;

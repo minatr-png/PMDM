@@ -45,7 +45,7 @@ class Markets extends Component {
     }
 
     unBlockMarket(id, blocked) {
-        var block;
+        let block;
         if (blocked === "yes") block = "false";
         else block = "true";
         axios.put('https://localhost:44305/api/Mercados?id=' + id + '&blocked=' + block).then(() => {
@@ -56,7 +56,7 @@ class Markets extends Component {
     loadMarkets() {
         axios.get('https://localhost:44305/api/Mercados').then((resolvedResult) => {
             const result = resolvedResult.data;
-            var marketsList = [], blocked = "";
+            let marketsList = [], blocked = "";
             if (result != null) {
                 result.forEach(element => {
                     if (element.Bloqueado) blocked = "yes";
