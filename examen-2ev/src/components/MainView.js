@@ -21,13 +21,15 @@ class MainView extends React.Component {
             this.setState({title: text});
         }
 
+        const btnMargin = {
+            marginBottom: 10
+        }
+
         return (
-            <div>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                 <h1>{this.state.title}</h1>
-                <NavLink to={'/EXSeconView'}><button>Ir a la segunda página</button></NavLink>
-                <p></p>
-                <NavLink to={'/Ejercicio1'}><button>Ir al ejercicio 1 y 5</button></NavLink>
-                <p></p>
+                <NavLink to={'/EXSeconView'} style={btnMargin}><button>Go to the second page</button></NavLink>
+                <NavLink to={'/Ejercicio1'} style={btnMargin}><button>Go to exercise 1 and 5</button></NavLink>
                 <EXButton onClick={() => callMe("Here button. I called you!")} title='Run exercise 6'></EXButton>  
             </div>
         )
