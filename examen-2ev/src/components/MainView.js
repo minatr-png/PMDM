@@ -19,6 +19,3 @@ class MainView extends React.Component {
 }
 
 export default MainView;
-
-//<div style={{alignSelf: 'center', justifyContent: 'center'}}></div>
-//<EXButton text='Listo para hacer click' style={{height: 100}}></EXButton>  

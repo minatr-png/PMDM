@@ -2,7 +2,7 @@ import './EXButton.css';
 
 const EXButton = (props) => {
     return (
-    <button type={'submit'}>{props.text}</button>
+        <button onClick={props.onClick} type={'submit'}>{props.text}</button>
     );
 }
 
