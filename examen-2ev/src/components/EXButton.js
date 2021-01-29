@@ -1,7 +1,9 @@
 import './EXButton.css';
 
-export const EXButton = (props) => {
+const EXButton = (props) => {
     return (
-        <button type={'submit'}>Click me!</button>
+    <button type={'submit'}>{props.text}</button>
     );
 }
+
+export default EXButton;
