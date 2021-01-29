@@ -15,7 +15,11 @@ class Events extends Component {
             allEvents: [],
             name: "",
             date: "",
-            newDate: ""
+            newDate: "",
+            displayDelete: 'none',
+            displayChangeDate: 'none',
+            eventToDelete: -1,
+            dateId: -1
         };
     }
 
@@ -38,23 +42,36 @@ class Events extends Component {
     btnColumn = rowData => {
         return (
             <Fragment>
-                <button onClick={() => this.deleteEvent(rowData.eventId)}>Delete</button>
-                <button onClick={() => this.changeEventDate(rowData.eventId)}>Change date</button>
+                <button onClick={() => this.beforeDelete(rowData.eventId)}>Delete</button>
+                <button onClick={() => this.beforeChange(rowData.eventId)}>Change date</button>
             </Fragment>
         );
     }
 
     render() {
-    const inputMargin = {
-        marginLeft: "10px"
-    }
-
-    const tableStyle = {
-        marginRight: "20px",
-        marginTop: "10px",
-        marginBottom: "10px"
-    }
-        return <div>
+        const tableStyle = {
+            marginRight: "20px",
+            marginTop: "10px",
+            marginBottom: "10px"
+        }
+        return <view>
+            <view style={{ display: this.state.displayDelete }}>
+                <div style={{ backgroundColor: 'white', paddingLeft: 10, paddingBottom: 10, marginRight: 20 }}>
+                    <h1 style={{ color: "black" }}>Are you sure you want to delete this Event?</h1>
+                    <button onClick={() => this.deleteEvent()}>Delete</button>
+                    <button onClick={() => this.setState({ displayDelete: 'none' })}>Cancel</button>
+                </div>
+            </view>
+            <view style={{ display: this.state.displayChangeDate }}>
+                <div style={{ backgroundColor: 'white', paddingLeft: 10, paddingBottom: 10, marginRight: 20, color: 'black' }}>
+                    <h1 style={{ color: "black" }}>Select the new date?</h1>
+                    New Date: <InputText type="date" onChange={this.newDateChange} />
+                    <p>
+                        <button onClick={() => this.changeEventDate()}>Change</button>
+                        <button onClick={() => this.setState({ displayChangeDate: 'none' })}>Cancel</button>
+                    </p>
+                </div>
+            </view>
             <h1>Events</h1>
             <h3>Filter by:</h3>
             <Filter name="Date:" type="date" onChange={this.dateChange}></Filter>
@@ -69,22 +86,34 @@ class Events extends Component {
                 </DataTable>
             </div>
             <NavLink to={'/newEvent'} ><button>New Event</button></NavLink>
-            <view style={{marginLeft: 1000}}>New Date <InputText type="date" onChange={this.newDateChange}/></view>
-        </div>;
+        </view>;
     }
 
-    deleteEvent(data) {
-        axios.delete('https://localhost:44305/api/Eventos/' + data).then(() => {
+    /*<view style={{ marginLeft: 1000 }}></view>*/
+    deleteEvent() {
+        axios.delete('https://localhost:44305/api/Eventos/' + this.state.eventToDelete).then(() => {
             this.loadEvents();
         });
+        this.setState({ displayDelete: 'none' });
     }
 
-    changeEventDate(id) {
+    changeEventDate() {
         if (this.state.newDate !== "") {
-            axios.put('https://localhost:44305/api/Eventos?id=' + id + '&fecha=' + this.state.newDate).then(() => {
+            axios.put('https://localhost:44305/api/Eventos?id=' + this.state.dateId + '&fecha=' + this.state.newDate).then(() => {
                 this.loadEvents();
             });
         }
+        this.setState({ displayChangeDate: 'none' });
+    }
+
+    beforeDelete(id) {
+        this.setState({ displayDelete: '' });
+        this.setState({ eventToDelete: id });
+    }
+
+    beforeChange(id) {
+        this.setState({ displayChangeDate: '' });
+        this.setState({ dateId: id });
     }
 
     loadEvents() {
