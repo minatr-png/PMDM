@@ -1,12 +1,25 @@
 import './App.css';
-import EXButton from './components/EXButton';
+import EXSeconView from './components/EXSecondView';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import MainView from './components/MainView';
+import Ejercicio1View from './components/Ejercicio1View';
 
 function App() {
   return (
     <div className="App">
-      <div style={{alignSelf: 'center', justifyContent: 'center'}}>
-        <EXButton text='Listo para hacer click' style={{height: 100}}></EXButton>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path={'/'} exact>
+            <MainView></MainView>
+          </Route>
+          <Route path={'/EXSeconView'}>
+            <EXSeconView></EXSeconView>
+          </Route>
+          <Route path={'/Ejercicio1'}>
+            <Ejercicio1View></Ejercicio1View>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
