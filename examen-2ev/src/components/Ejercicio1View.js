@@ -11,7 +11,7 @@ class Ejercicio1View extends React.Component {
 
         return (
             <div>     
-                <EXButton onClick={justDoIt} text='Listo para hacer click'></EXButton>  
+                <EXButton onClick={justDoIt} title='Listo para hacer click'></EXButton>  
             </div>
         )
     }
