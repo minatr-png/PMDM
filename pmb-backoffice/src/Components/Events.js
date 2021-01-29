@@ -3,6 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { NavLink } from 'react-router-dom';
+import Filter from './Filter';
 
 const axios = require('axios');
 
@@ -55,10 +56,9 @@ class Events extends Component {
     }
         return <div>
             <h1>Events</h1>
-            Date:
-            <InputText type="date" onChange={this.dateChange}/>
-            <nobr style={inputMargin}>Event name:
-            <InputText onChange={this.nameChange} style={inputMargin}/></nobr>
+            <h3>Filter by:</h3>
+            <Filter name="Date:" type="date" onChange={this.dateChange}></Filter>
+            <Filter name="Event name:" type="text" onChange={this.nameChange}></Filter>
             <div className="card">
                 <DataTable value={this.state.events} scrollable scrollHeight="500px" style={tableStyle}>
                     <Column field='eventId' header='Event ID' />

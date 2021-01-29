@@ -1,7 +1,7 @@
 import { Component, Fragment } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { InputText } from 'primereact/inputtext';
+import Filter from './Filter';
 
 const axios = require('axios');
 
@@ -47,18 +47,12 @@ class Users extends Component {
             marginTop: "10px"
         }
 
-        const inputMargin = {
-            marginLeft: "10px"
-        }
-
         return <div>
             <h1>Users</h1>
-            Name:
-            <InputText type="text" onChange={this.nameChange}/>
-            <nobr style={inputMargin}>Surname:
-            <InputText type="text" onChange={this.surnameChange}/></nobr>
-            <nobr style={inputMargin}>Email:
-            <InputText type="text" onChange={this.emailChange}/></nobr>
+            <h3>Filter by:</h3>
+            <Filter name="Name:" type="text" onChange={this.nameChange}></Filter>
+            <Filter name="Surname:" type="text" onChange={this.surnameChange}></Filter>
+            <Filter name="Email:" type="text" onChange={this.emailChange}></Filter>
             <div className="card">
                 <DataTable value={this.state.users} scrollable scrollHeight="500px" style={tableStyle}>
                     <Column field='email' header='Email' />

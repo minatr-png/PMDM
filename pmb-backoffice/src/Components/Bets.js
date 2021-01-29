@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { InputText } from 'primereact/inputtext';
+import Filter from './Filter';
 import { NavLink } from 'react-router-dom';
 
 const axios = require('axios');
@@ -51,12 +51,10 @@ class Bets extends Component {
 
         return <div>
             <h1>Bets</h1>
-            Email:
-            <InputText onChange={this.emailChange} />
-            <nobr style={inputMargin}>Market:
-            <InputText keyfilter="pnum" onChange={this.marketChange} /></nobr>
-            <nobr style={inputMargin}>Event:
-            <InputText keyfilter="pnum" onChange={this.eventChange}/></nobr>
+            <h3>Filter by:</h3>
+            <Filter name="Email:" type="text" onChange={this.emailChange}></Filter>
+            <Filter name="Market:" keyfilter="pnum" onChange={this.marketChange}></Filter>
+            <Filter name="Event:" keyfilter="pnum" onChange={this.eventChange}></Filter>
             <DataTable value={this.state.bets} scrollable scrollHeight="500px" style={tableStyle}>
                 <Column field='betId' header='Bet ID'/>
                 <Column field='userId' header='User email' />
