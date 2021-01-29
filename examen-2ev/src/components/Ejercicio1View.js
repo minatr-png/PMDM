@@ -6,7 +6,7 @@ class Ejercicio1View extends React.Component {
 
     render() {
         const justDoIt = () => {
-            console.log("Exercise 4 done!");
+            console.log("Exercise 5 done!");
         }
 
         return (
