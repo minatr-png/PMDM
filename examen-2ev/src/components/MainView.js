@@ -26,7 +26,7 @@ class MainView extends React.Component {
         }
 
         return (
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h1>{this.state.title}</h1>
                 <NavLink to={'/EXSeconView'} style={btnMargin}><button>Go to exercise 4</button></NavLink>
                 <NavLink to={'/Ejercicio1'} style={btnMargin}><button>Go to exercise 2 and 5</button></NavLink>
